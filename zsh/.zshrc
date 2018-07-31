@@ -24,6 +24,19 @@ alias dcr="docker-compose run"
 alias dcu="docker-compose up"
 alias dm="docker-machine"
 
+# Projects function
+compctl -K _p p
+
+_p() {
+  local word words completions
+  read -cA words
+  word="${words[2]}"
+
+  completions="$(ls $REPO_DIR/)"
+
+  reply=("${(ps:\n:)completions}")
+}
+
 function p {
   if [[ -d $REPO_DIR/$1 ]]; then
     cd $REPO_DIR/$1
