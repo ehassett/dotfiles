@@ -11,6 +11,7 @@ colorscheme solarized
 :set tabstop=2
 :set shiftwidth=2
 :set expandtab
+:set number
 
 " NERDTree settings
 "" Open NERDTree by default with cursor in file
