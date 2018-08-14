@@ -1,3 +1,5 @@
+cd ~
+
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME=erhbg
 export TERM=xterm-256color
@@ -20,6 +22,7 @@ source /usr/share/rvm/scripts/rvm
 alias c="clear"
 alias home="cd ~ && clear"
 alias rl="source ~/.zshrc && clear"
+alias mux="tmuxinator"
 alias dc="docker-compose"
 alias dcr="docker-compose run"
 alias dcu="docker-compose up"

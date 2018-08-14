@@ -4,7 +4,6 @@ execute pathogen#infect()
 " Theme settings
 let g:solarized_termcolors=256
 syntax enable
-colorscheme solarized
 :highlight Normal ctermbg=236
 :highlight LineNR ctermfg=33 ctermbg=236
 :highlight Identifier ctermfg=39
