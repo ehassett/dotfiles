@@ -2,11 +2,12 @@
 execute pathogen#infect()
 
 " Theme settings
-let g:solarized_termcolors=256
 syntax enable
+colorscheme peachpuff
 :highlight Normal ctermbg=236
 :highlight LineNR ctermfg=33 ctermbg=236
 :highlight Identifier ctermfg=39
+:highlight Visual ctermfg=33 ctermbg=236
 :set tabstop=2
 :set shiftwidth=2
 :set expandtab

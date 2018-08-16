@@ -16,3 +16,6 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [pathogen](https://github.com/tpope/vim-pathogen)
   * [vim-surround](https://github.com/tpope/vim-surround)
+
+* [hyper](https://hyper.is)
+  * [.hyper-windows.js](hyper/.hyper-windows.js) is the configuration I use on Windows machines, but should be renamed `.hyper.js` to use.
