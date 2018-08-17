@@ -10,6 +10,7 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 
 * tmux
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
+  * [tmux_battery.sh](tmux/tmux_battery.sh)
 
 * vim
   * [colorizer](https://github.com/lilydjwg/colorizer)
