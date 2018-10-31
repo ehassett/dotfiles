@@ -7,6 +7,8 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
 
+eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
+
 plugins=(
   docker
   docker-compose
