@@ -23,7 +23,8 @@ fi
 totalMem=`cat /proc/meminfo | grep MemTotal | sed 's/[^0-9]*//g'`
 freeMem=`cat /proc/meminfo | grep MemFree | sed 's/[^0-9]*//g'`
 usedMem=$((totalMem-freeMem))
-ram=`echo "scale=1; ($usedMem/$totalMem)*100" | bc`"%"
+perMem=`echo "scale=4; ($usedMem/$totalMem)*100" | bc`
+ram=`echo $(printf "%0.1f\n" $perMem)"%"`
 
 usedCPU=`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'`
 cpu=`echo $(printf "%0.1f\n" $usedCPU)"%"`
