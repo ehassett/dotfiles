@@ -3,19 +3,28 @@
 This repo contains a collection of my dotfiles. Suggestions and contributions are welcome!
 
 # Installation
-## Packages/plugins used:
 
-* zsh
-  * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+To install all the packages and plugins listed below, clone this repo and run `script/bootstrap`.
 
-* tmux
+## Packages/Plugins
+
+* [hyper](https://hyper.is)
+  * [.hyper-windows.js](hyper/.hyper-windows.js)
+
+* [keychain](https://packages.ubuntu.com/bionic/keychain)
+
+* [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 
-* vim
+* [vim](https://packages.ubuntu.com/bionic/vim)
   * [colorizer](https://github.com/lilydjwg/colorizer)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [pathogen](https://github.com/tpope/vim-pathogen)
   * [vim-surround](https://github.com/tpope/vim-surround)
 
-* [hyper](https://hyper.is)
-  * [.hyper-windows.js](hyper/.hyper-windows.js) is the configuration I use on Windows machines, but should be renamed `.hyper.js` to use.
+* [zsh](https://packages.ubuntu.com/bionic/zsh)
+  * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+# Compatibilty
+
+Tested on Ubuntu 18.04 for WSL. Should also work on Ubuntu 18.04.
