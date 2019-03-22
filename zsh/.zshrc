@@ -23,7 +23,9 @@ source $ZSH/oh-my-zsh.sh
 alias c="clear"
 alias home="cd ~ && clear"
 alias rl="source ~/.zshrc && clear"
+alias ud="sudo apt update && sudo apt upgrade -y"
 alias mux="tmuxinator"
+## Docker aliases
 alias dc="docker-compose"
 alias dcr="docker-compose run"
 alias dcu="docker-compose up"
