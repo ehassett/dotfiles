@@ -7,15 +7,29 @@ apt-get update && apt-get upgrade -y
 
 apt-get install -y \
 	apt-transport-https \
+  autoconf \
+  automake \
+  bison \
+  build-essential \
 	ca-certificates \
 	curl \
-	gnupg \
+	git \
+  gnupg \
 	gnupg-agent \
 	keychain \
+  libc6-dev \
+  libssl-dev \
+  libtool \
+  libxml2-dev \
+  libyaml-dev \
+  openssl \
 	ruby \
+  ruby-dev \  
 	software-properties-common \
 	tmux \
 	vim \
+  zlib1g \
+  zlib1g-dev \
 	zsh
 
 echo "--------------------------------"
@@ -39,6 +53,7 @@ echo "--------------------------------"
 echo "Updating RubyGems"
 echo "--------------------------------"
 gem update --system
+gem install rails
 
 echo "--------------------------------"
 echo "Installing Oh My Zsh"
