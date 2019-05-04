@@ -84,6 +84,7 @@ mkdir ~/.tmuxinator && cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
 cp vim/.vimrc ~/.vimrc
 mkdir -p ~/.oh-my-zsh/themes && cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
 cp zsh/.zshrc ~/.zshrc
+mkdir ~/.dir_colors && cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
 
 if grep -q Microsoft /proc/version; then
 	winUser=$(echo `/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%"` | tr -d '\r')

@@ -8,6 +8,7 @@ export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
 
 eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
+eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
 
 plugins=(
   docker
