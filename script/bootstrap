@@ -6,40 +6,40 @@ echo "--------------------------------"
 apt-get update && apt-get upgrade -y
 
 apt-get install -y \
-	apt-transport-https \
+  apt-transport-https \
   autoconf \
   automake \
   bison \
   build-essential \
-	ca-certificates \
-	curl \
-	git \
+  ca-certificates \
+  curl \
+  git \
   gnupg \
-	gnupg-agent \
-	keychain \
+  gnupg-agent \
+  keychain \
   libc6-dev \
   libssl-dev \
   libtool \
   libxml2-dev \
   libyaml-dev \
   openssl \
-	ruby \
+  ruby \
   ruby-dev \  
-	software-properties-common \
-	tmux \
-	vim \
+  software-properties-common \
+  tmux \
+  vim \
   zlib1g \
   zlib1g-dev \
-	zsh
+  zsh
 
 echo "--------------------------------"
 echo "Installing Docker"
 echo "--------------------------------"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository \
-	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-	$(lsb_release -cs) \
-	stable"
+  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) \
+  stable"
 apt-get update && apt-get install -y docker-ce docker-ce-cli
 
 curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -87,12 +87,12 @@ cp zsh/.zshrc ~/.zshrc
 mkdir ~/.dir_colors && cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
 
 if grep -q Microsoft /proc/version; then
-	winUser=$(echo `/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%"` | tr -d '\r')
-	if [ -e /mnt/c/Users/$winUser/.hyper.js ]; then
-		cp hyper/.hyper-windows.js /mnt/c/Users/$winUser/.hyper.js
-	else
-		echo "No installation found for Hyper, skip copying config."
-	fi
+  winUser=$(echo `/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%"` | tr -d '\r')
+  if [ -e /mnt/c/Users/$winUser/.hyper.js ]; then
+    cp hyper/.hyper-windows.js /mnt/c/Users/$winUser/.hyper.js
+  else
+    echo "No installation found for Hyper, skip copying config."
+  fi
 else
-	echo "Not a WSL install, will not copy Hyper config."
+  echo "Not a WSL install, will not copy Hyper config."
 fi
