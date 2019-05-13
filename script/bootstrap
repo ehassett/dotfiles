@@ -24,7 +24,7 @@ apt-get install -y \
   libyaml-dev \
   openssl \
   ruby \
-  ruby-dev \  
+  ruby-dev \
   software-properties-common \
   tmux \
   vim \
