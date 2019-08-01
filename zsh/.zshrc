@@ -31,7 +31,6 @@ alias dc="docker-compose"
 alias dcr="docker-compose run"
 alias dcu="docker-compose up"
 alias dm="docker-machine"
-alias dmu="export DOCKER_HOST=tcp://0.0.0.0:2375"
 
 # Projects function
 compctl -K _p p
