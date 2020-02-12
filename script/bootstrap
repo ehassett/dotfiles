@@ -3,9 +3,9 @@
 echo "--------------------------------"
 echo "Installing Dependencies"
 echo "--------------------------------"
-apt-get update && apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
-apt-get install -y \
+sudo apt-get install -y \
   apt-transport-https \
   autoconf \
   automake \
@@ -36,63 +36,79 @@ echo "--------------------------------"
 echo "Installing Docker"
 echo "--------------------------------"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository \
+sudo add-apt-repository \
   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) \
   stable"
-apt-get update && apt-get install -y docker-ce docker-ce-cli
+sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli
 
-curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-base=https://github.com/docker/machine/releases/download/v0.16.0 
-curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine
-install /tmp/docker-machine /usr/local/bin/docker-machine
+if [[ -e /tmp/docker-machine ]]; then
+  echo "WARN: docker-machine already appears to be installed, skipping..."
+else
+  base=https://github.com/docker/machine/releases/download/v0.16.0 
+  sudo curl -L $base/docker-machine-$(uname -s)-$(uname -m) > /tmp/docker-machine
+  install /tmp/docker-machine /usr/local/bin/docker-machine
+fi
 
 echo "--------------------------------"
 echo "Updating RubyGems"
 echo "--------------------------------"
-gem update --system
-gem install rails
+sudo gem update --system
+sudo gem install rails
 
 echo "--------------------------------"
 echo "Installing Oh My Zsh"
 echo "--------------------------------"
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+if [[ -d ~/.oh-my-zsh ]]; then
+  echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
+else
+  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+fi
 
 echo "--------------------------------"
 echo "Installing Tmuxinator"
 echo "--------------------------------"
-gem install tmuxinator
+sudo gem install tmuxinator
 
 echo "--------------------------------"
 echo "Installing Vim Plugins"
 echo "--------------------------------"
-mkdir -p ~/.vim/autoload ~/.vim/bundle
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+if [[ -d ~/.vim/autoload ]] || [[ -d ~/.vim/bundle ]]; then
+  echo "WARN: Autoload and Bundle directories already exist under ~/.vim, skipping..."
+else
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-git clone https://github.com/lilydjwg/colorizer ~/.vim/bundle
-git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+  git clone https://github.com/lilydjwg/colorizer ~/.vim/bundle
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+  git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+fi
 
 echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
-cp tmux/sysinfo.sh /usr/bin
-cp tmux/.tmux.conf ~/.tmux.conf
-mkdir ~/.tmuxinator && cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
-cp vim/.vimrc ~/.vimrc
-mkdir -p ~/.oh-my-zsh/themes && cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
-cp zsh/.zshrc ~/.zshrc
-mkdir ~/.dir_colors && cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
+#cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.
+sudo cp tmux/.tmux.conf ~/.tmux.conf
+sudo mkdir -p ~/.tmuxinator && sudo cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
+sudo cp vim/.vimrc ~/.vimrc
+sudo mkdir -p ~/.oh-my-zsh/themes && sudo cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
+sudo cp zsh/.zshrc ~/.zshrc
+sudo mkdir -p ~/.dir_colors && sudo cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
 
-if grep -q Microsoft /proc/version; then
+if grep -q microsoft /proc/version; then
   winUser=$(echo `/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%"` | tr -d '\r')
-  if [ -e /mnt/c/Users/$winUser/.hyper.js ]; then
-    cp hyper/.hyper-windows.js /mnt/c/Users/$winUser/.hyper.js
+  if [[ -d /mnt/c/Users/$winUser/AppData/Roaming/Hyper ]]; then
+    cp hyper/.hyper-windows.js /mnt/c/Users/$winUser/AppData/Roaming/Hyper/.hyper.js
   else
     echo "No installation found for Hyper, skip copying config."
   fi
 else
   echo "Not a WSL install, will not copy Hyper config."
 fi
+
+echo "--------------------------------"
+echo "System has been bootstrapped successfully, Happy Hacking!"
+echo "--------------------------------"

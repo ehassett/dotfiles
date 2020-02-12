@@ -54,3 +54,12 @@ function p {
   fi
   clear
 }
+
+# cmd function
+function cmd {
+  if grep -q microsoft /proc/version; then
+    echo $1 | cmd.exe
+  else
+    echo "Cannot verify this as a WSL install, cmd will not work."
+  fi
+}
