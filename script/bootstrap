@@ -16,6 +16,7 @@ sudo apt-get install -y \
   git \
   gnupg \
   gnupg-agent \
+  gpg \
   keychain \
   libc6-dev \
   libssl-dev \
@@ -23,8 +24,6 @@ sudo apt-get install -y \
   libxml2-dev \
   libyaml-dev \
   openssl \
-  ruby \
-  ruby-dev \
   software-properties-common \
   tmux \
   vim \
@@ -50,14 +49,20 @@ if [[ -e /tmp/docker-machine ]]; then
 else
   base=https://github.com/docker/machine/releases/download/v0.16.0 
   sudo curl -L $base/docker-machine-$(uname -s)-$(uname -m) > /tmp/docker-machine
-  install /tmp/docker-machine /usr/local/bin/docker-machine
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
 fi
 
 echo "--------------------------------"
-echo "Updating RubyGems"
+echo "Installing Ruby"
 echo "--------------------------------"
-sudo gem update --system
-sudo gem install rails
+gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+curl -sSL https://get.rvm.io | bash -s stable
+source /home/erhbg/.rvm/scripts/rvm
+rvm install 2.7
+rvm docs generate-ri
+
+gem update --system
+gem install rails
 
 echo "--------------------------------"
 echo "Installing Oh My Zsh"
@@ -71,7 +76,7 @@ fi
 echo "--------------------------------"
 echo "Installing Tmuxinator"
 echo "--------------------------------"
-sudo gem install tmuxinator
+gem install tmuxinator
 
 echo "--------------------------------"
 echo "Installing Vim Plugins"
