@@ -15,7 +15,6 @@ plugins=(
   docker-compose
   docker-machine
   git
-  vim
 )
 
 source $ZSH/oh-my-zsh.sh
