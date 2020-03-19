@@ -8,10 +8,16 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 ## Packages/Plugins
 
+* [docker](https://www.docker.com/)
+  * [docker-compose](https://docs.docker.com/compose/)
+  * [docker-machine](https://docs.docker.com/machine/overview/)
+
 * [hyper](https://hyper.is)
   * [.hyper-windows.js](hyper/.hyper-windows.js)
 
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
+
+* [ruby](https://www.ruby-lang.org)
 
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
