@@ -33,4 +33,4 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 # Compatibilty
 
-Tested on Ubuntu 18.04 and Ubuntu 18.04 for WSL.
+Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10 for WSL.
