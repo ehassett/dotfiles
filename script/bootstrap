@@ -24,8 +24,10 @@ sudo apt-get install -y \
   libxml2-dev \
   libyaml-dev \
   openssl \
+  silversearcher-ag \
   software-properties-common \
   tmux \
+  tree \
   vim \
   zlib1g \
   zlib1g-dev \
