@@ -8,7 +8,7 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 ## Packages/Plugins
 
-* [docker](https://www.docker.com/)
+* [docker](https://www.docker.com/) (See notes below)
   * [docker-compose](https://docs.docker.com/compose/)
   * [docker-machine](https://docs.docker.com/machine/overview/)
 
@@ -34,3 +34,7 @@ To install all the packages and plugins listed below, clone this repo and run `s
 # Compatibilty
 
 Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10 for WSL.
+
+# Notes
+## Docker
+After installing docker, you may need to follow [these instructions](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to allow non-root users to manage docker.
