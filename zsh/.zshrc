@@ -19,6 +19,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.rvm/scripts/rvm
+source $HOME/.nvm/nvm.sh
 
 # Custom aliases
 alias c="clear"

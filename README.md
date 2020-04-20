@@ -17,6 +17,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
 
+* [node](https://nodejs.org)
+
 * [ruby](https://www.ruby-lang.org)
 
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
