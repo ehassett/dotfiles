@@ -103,6 +103,13 @@ else
 fi
 
 echo "--------------------------------"
+echo "Installing git-secret"
+echo "--------------------------------"
+echo "deb https://dl.bintray.com/sobolevn/deb git-secret main" | sudo tee -a /etc/apt/sources.list
+wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt-key add -
+sudo apt-get update && sudo apt-get install -y git-secret
+
+echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 #cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.
@@ -116,7 +123,7 @@ sudo mkdir -p ~/.dir_colors && sudo cp zsh/dircolors.256darksolarized ~/.dir_col
 if grep -q microsoft /proc/version; then
   winUser=$(echo `/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%"` | tr -d '\r')
   if [[ -d /mnt/c/Users/$winUser/AppData/Roaming/Hyper ]]; then
-    cp hyper/.hyper-windows.js /mnt/c/Users/$winUser/AppData/Roaming/Hyper/.hyper.js
+    cp wsl/hyper/.hyper-windows.js /mnt/c/Users/$winUser/AppData/Roaming/Hyper/.hyper.js
   else
     echo "No installation found for Hyper, skip copying config."
   fi
