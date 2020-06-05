@@ -3,7 +3,7 @@
 This repo contains a collection of my dotfiles. Suggestions and contributions are welcome!
 
 # Screenshot
-![image](https://user-images.githubusercontent.com/7284853/81873265-5f2a9980-9549-11ea-8931-714c0497c235.png)
+![image](https://user-images.githubusercontent.com/7284853/83916828-d9fb6480-a743-11ea-90db-f4ef9f0c8945.png)
 Windows Terminal
 
 # Installation
@@ -27,6 +27,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [ruby](https://www.ruby-lang.org)
 
+* [terraform](https://www.terraform.io)
+
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 
@@ -43,8 +45,7 @@ To install all the packages and plugins listed below, clone this repo and run `s
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 # Compatibilty
-
-Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10 for WSL.
+Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10, 20.04 for WSL.
 
 # Notes
 ## Docker
