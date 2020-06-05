@@ -110,6 +110,14 @@ wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt
 sudo apt-get update && sudo apt-get install -y git-secret
 
 echo "--------------------------------"
+echo "Installing terraform"
+echo "--------------------------------"
+curl https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip -o /tmp/terraform.zip
+unzip /tmp/terraform.zip -d /tmp
+sudo mv /tmp/terraform /usr/local/bin/terraform
+rm /tmp/terraform.zip
+
+echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 #cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.

@@ -34,6 +34,9 @@ alias dcu="docker-compose up"
 alias dm="docker-machine"
 ## Rails aliases
 alias be="bundle exec"
+## Terraform aliases
+alias tf="terraform"
+alias tfa="terraform apply"
 
 # Projects function
 compctl -K _p p
@@ -66,3 +69,7 @@ function cmd {
     echo "Cannot verify this as a WSL install, cmd will not work."
   fi
 }
+
+# Terraform autocomplete
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
