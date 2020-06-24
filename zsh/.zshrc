@@ -37,6 +37,8 @@ alias be="bundle exec"
 ## Terraform aliases
 alias tf="terraform"
 alias tfa="terraform apply"
+## WSL aliases
+alias pwsh="pwsh.exe"
 
 # Projects function
 compctl -K _p p
