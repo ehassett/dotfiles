@@ -19,7 +19,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.rvm/scripts/rvm
-source $HOME/.nvm/nvm.sh
+#source $HOME/.nvm/nvm.sh
 
 # Custom aliases
 alias c="clear"
@@ -28,12 +28,12 @@ alias rl="source ~/.zshrc && clear"
 alias ud="sudo apt update && sudo apt upgrade -y"
 alias mux="tmuxinator"
 ## Docker aliases
-alias dc="docker-compose"
-alias dcr="docker-compose run"
-alias dcu="docker-compose up"
-alias dm="docker-machine"
+#alias dc="docker-compose"
+#alias dcr="docker-compose run"
+#alias dcu="docker-compose up"
+#alias dm="docker-machine"
 ## Rails aliases
-alias be="bundle exec"
+#alias be="bundle exec"
 ## Terraform aliases
 alias tf="terraform"
 alias tfa="terraform apply"

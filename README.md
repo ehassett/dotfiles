@@ -13,17 +13,10 @@ To install all the packages and plugins listed below, clone this repo and run `s
 ## Packages/Plugins
 
 * [docker](https://www.docker.com/) (See notes below)
-  * [docker-compose](https://docs.docker.com/compose/)
-  * [docker-machine](https://docs.docker.com/machine/overview/)
 
 * [git-secret](https://git-secret.io/)
 
-* [hyper](https://hyper.is) (See notes below)
-  * [.hyper-windows.js](wsl/hyper/.hyper-windows.js)
-
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
-
-* [node](https://nodejs.org)
 
 * [ruby](https://www.ruby-lang.org)
 
@@ -50,11 +43,6 @@ Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10, 20.04 for WSL.
 # Notes
 ## Docker
 After installing docker, you may need to follow [these instructions](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to allow non-root users to manage docker.
-
-## Hyper
-`script/bootstrap` does not actually install Hyper as that is done on a Windows host. Instead, the script checks if the OS is a WSL install and then checks if Hyper is installed.
-If it is, my Hyper profile is copied to the correct folder on the Windows host.
-This currently will only work if Hyper installed to your C:\ drive.
 
 ## Windows Terminal
 `script/bootstrap` does not install Windows Terminal or copy `settings.json`. This is due to the settings file using GUIDs for WSL distributions, PowerShell, cmd, etc.
