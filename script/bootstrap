@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+NVM_VERSION="0.38.0"
+NODE_VERSION="14.17.0"
+RUBY_VERSION="3.0.1"
+
 echo "--------------------------------"
 echo "Installing Dependencies"
 echo "--------------------------------"
@@ -44,26 +48,12 @@ sudo add-apt-repository \
   stable"
 sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli
 
-#----- Removed 10/22/2020 -----#
-#sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#sudo chmod +x /usr/local/bin/docker-compose
-
-#if [[ -e /usr/local/bin/docker-machine ]]; then
-#  echo "WARN: docker-machine already appears to be installed, skipping..."
-#else
-#  base=https://github.com/docker/machine/releases/download/v0.16.0 
-#  sudo curl -L $base/docker-machine-$(uname -s)-$(uname -m) > /tmp/docker-machine
-#  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
-#  sudo rm -rf /tmp/docker-machine
-#fi
-
-#echo "--------------------------------"
-#echo "Installing Node"
-#echo "--------------------------------"
-#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-#source ~/.nvm/nvm.sh
-#nvm install 12.16.2
-#------------------------------#
+echo "--------------------------------"
+echo "Installing Node"
+echo "--------------------------------"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$NVM_VERSION/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install $NODE_VERSION
 
 echo "--------------------------------"
 echo "Installing Ruby"
@@ -71,9 +61,8 @@ echo "--------------------------------"
 gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
-rvm install 2.7
+rvm install $RUBY_VERSION
 rvm docs generate-ri
-
 gem update --system
 
 echo "--------------------------------"
@@ -98,7 +87,6 @@ if [[ -d ~/.vim/autoload ]] || [[ -d ~/.vim/bundle ]]; then
 else
   mkdir -p ~/.vim/autoload ~/.vim/bundle
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-
   git clone https://github.com/lilydjwg/colorizer ~/.vim/bundle
   git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
   git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
@@ -107,17 +95,16 @@ fi
 echo "--------------------------------"
 echo "Installing git-secret"
 echo "--------------------------------"
-echo "deb https://dl.bintray.com/sobolevn/deb git-secret main" | sudo tee -a /etc/apt/sources.list
-wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | sudo apt-key add -
+sudo sh -c "echo 'deb https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main' >> /etc/apt/sources.list"
+wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
 sudo apt-get update && sudo apt-get install -y git-secret
 
 echo "--------------------------------"
 echo "Installing terraform"
 echo "--------------------------------"
-curl https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip -o /tmp/terraform.zip
-unzip /tmp/terraform.zip -d /tmp
-sudo mv /tmp/terraform /usr/local/bin/terraform
-rm /tmp/terraform.zip
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
 
 echo "--------------------------------"
 echo "Copying Files"

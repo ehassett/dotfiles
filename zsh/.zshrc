@@ -12,14 +12,17 @@ eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
 
 plugins=(
   docker
-  docker-compose
-  docker-machine
   git
+  node
+  npm
+  nvm
+  rvm
+  terraform
 )
 
+# Load oh-my-zsh and rvm
 source $ZSH/oh-my-zsh.sh
 source $HOME/.rvm/scripts/rvm
-#source $HOME/.nvm/nvm.sh
 
 # Custom aliases
 alias c="clear"
@@ -27,20 +30,13 @@ alias home="cd ~ && clear"
 alias rl="source ~/.zshrc && clear"
 alias ud="sudo apt update && sudo apt upgrade -y"
 alias mux="tmuxinator"
-## Docker aliases
-#alias dc="docker-compose"
-#alias dcr="docker-compose run"
-#alias dcu="docker-compose up"
-#alias dm="docker-machine"
-## Rails aliases
-#alias be="bundle exec"
 ## Terraform aliases
 alias tf="terraform"
 alias tfa="terraform apply"
 ## WSL aliases
 alias pwsh="pwsh.exe"
 
-# Projects function
+# p(rojects) function
 compctl -K _p p
 
 _p() {
@@ -72,6 +68,6 @@ function cmd {
   fi
 }
 
-# Terraform autocomplete
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+# Load nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
