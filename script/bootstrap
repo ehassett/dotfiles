@@ -3,6 +3,7 @@
 NVM_VERSION="0.38.0"
 NODE_VERSION="14.17.0"
 RUBY_VERSION="3.0.1"
+GO_VERSION="1.16.4"
 
 echo "--------------------------------"
 echo "Installing Dependencies"
@@ -66,12 +67,19 @@ rvm docs generate-ri
 gem update --system
 
 echo "--------------------------------"
+echo "Installing Go"
+echo "--------------------------------"
+curl -L -o /tmp/go$GO_VERSION.tar.gz https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf /tmp/go$GO_VERSION.tar.gz
+rm /tmp/go$GO_VERSION.tar.gz
+
+echo "--------------------------------"
 echo "Installing Oh My Zsh"
 echo "--------------------------------"
 if [[ -d ~/.oh-my-zsh ]]; then
   echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
 else
-  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
 
 echo "--------------------------------"

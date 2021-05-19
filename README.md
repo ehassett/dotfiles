@@ -16,6 +16,9 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [git-secret](https://git-secret.io/)
 
+* [go](https://golang.org/)
+  * Version specified at the top of [script/bootstrap](script/bootstrap)
+
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
 
 * [node](https://nodejs.org/en/)
