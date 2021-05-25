@@ -108,11 +108,9 @@ wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo ap
 sudo apt-get update && sudo apt-get install -y git-secret
 
 echo "--------------------------------"
-echo "Installing terraform"
+echo "Installing git-chglog"
 echo "--------------------------------"
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install terraform
+go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
 
 echo "--------------------------------"
 echo "Copying Files"

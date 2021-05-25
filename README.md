@@ -14,6 +14,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [docker](https://www.docker.com/) (See notes below)
 
+* [git-chglog](https://github.com/git-chglog/git-chglog)
+
 * [git-secret](https://git-secret.io/)
 
 * [go](https://golang.org/)
@@ -29,8 +31,6 @@ To install all the packages and plugins listed below, clone this repo and run `s
 * [ruby](https://www.ruby-lang.org)
   * Version specified at the top of [script/bootstrap](script/bootstrap)
   * [rvm](https://rvm.io)
-
-* [terraform](https://www.terraform.io)
 
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
