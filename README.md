@@ -55,5 +55,4 @@ Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10, 20.04 for WSL.
 After installing docker, you may need to follow [these instructions](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to allow non-root users to manage docker.
 
 ## Windows Terminal
-`script/bootstrap` does not install Windows Terminal or copy `settings.json`. This is due to the settings file using GUIDs for WSL distributions, PowerShell, cmd, etc.
-Instead, if you would like to use my configuration, copy the contents `settings.json` into your current Windows Terminal settings file, first changing the GUIDs to the proper ones.
+`script/bootstrap` does not install Windows Terminal or copy `settings.json`.
