@@ -4,6 +4,7 @@ NVM_VERSION="0.38.0"
 NODE_VERSION="14.17.0"
 RUBY_VERSION="3.0.1"
 GO_VERSION="1.16.4"
+TERRAFORM_VERSION="0.15.4"
 
 echo "--------------------------------"
 echo "Installing Dependencies"
@@ -111,6 +112,12 @@ echo "--------------------------------"
 echo "Installing git-chglog"
 echo "--------------------------------"
 go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
+
+echo "--------------------------------"
+echo "Installing Terraform"
+echo "--------------------------------"
+wget -q -O - https://raw.githubusercontent.com/ethanhassett/tfvm/main/install.sh | bash
+tfvm install $TERRAFORM_VERSION
 
 echo "--------------------------------"
 echo "Copying Files"

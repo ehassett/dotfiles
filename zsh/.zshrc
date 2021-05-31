@@ -8,7 +8,6 @@ export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/.tfvm/bin"
 
 eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
 eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
@@ -75,3 +74,6 @@ function cmd {
 # Load nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Add tfvm to PATH
+export PATH="$PATH:$HOME/.tfvm/bin"

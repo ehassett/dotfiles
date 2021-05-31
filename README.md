@@ -32,6 +32,10 @@ To install all the packages and plugins listed below, clone this repo and run `s
   * Version specified at the top of [script/bootstrap](script/bootstrap)
   * [rvm](https://rvm.io)
 
+* [terraform](https://terraform.io)
+  * Version specified at the top of [script/bootstrap](script/bootstrap)
+  * [tfvm](https://github.com/ethanhassett/tfvm)
+
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
 
