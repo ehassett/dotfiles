@@ -118,6 +118,7 @@ echo "--------------------------------"
 echo "Installing Terraform"
 echo "--------------------------------"
 wget -q -O - https://raw.githubusercontent.com/ethanhassett/tfvm/main/install.sh | bash
+export PATH="$PATH:$HOME/.tfvm/bin"
 tfvm install $TERRAFORM_VERSION
 
 echo "--------------------------------"
