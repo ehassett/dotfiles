@@ -4,7 +4,7 @@ NVM_VERSION="0.38.0"
 NODE_VERSION="14.17.0"
 RUBY_VERSION="3.0.1"
 GO_VERSION="1.16.4"
-TERRAFORM_VERSION="0.15.4"
+TERRAFORM_VERSION="1.0.0"
 
 echo "--------------------------------"
 echo "Installing Dependencies"
@@ -120,6 +120,7 @@ echo "--------------------------------"
 wget -q -O - https://raw.githubusercontent.com/ethanhassett/tfvm/main/install.sh | bash
 export PATH="$PATH:$HOME/.tfvm/bin"
 tfvm install $TERRAFORM_VERSION
+tfvm use $TERRAFORM_VERSION
 
 echo "--------------------------------"
 echo "Copying Files"
