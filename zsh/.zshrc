@@ -14,6 +14,7 @@ eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
 
 plugins=(
   docker
+  docker-compose
   git
   golang
   node
@@ -38,6 +39,9 @@ alias tf="terraform"
 alias tfa="terraform apply"
 ## WSL aliases
 alias pwsh="pwsh.exe"
+## Docker aliases
+alias dc="docker-compose"
+alias dcu="docker-compose up"
 
 # p(rojects) function
 compctl -K _p p
