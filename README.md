@@ -52,7 +52,7 @@ To install all the packages and plugins listed below, clone this repo and run `s
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 # Compatibilty
-Tested on Ubuntu 18.04 and Ubuntu 18.04, 19.10, 20.04 for WSL.
+Tested on Ubuntu 18.04, 20.04, and Ubuntu 18.04, 19.10, 20.04 for WSL.
 
 # Notes
 ## Docker
@@ -60,3 +60,10 @@ After installing docker, you may need to follow [these instructions](https://doc
 
 ## Windows Terminal
 `script/bootstrap` does not install Windows Terminal or copy `settings.json`.
+
+## .gitconfig
+`script/bootstrap` does not copy `.gitconfig` as it only contains aliases.
+
+Alias notes:
+* `git changelog`: Utilizes `git-chglog` to update the `CHANGELOG.md` file and tags in a repository.
+* `git newver`: Extends `git changelog` to update the version string in `README.md` and `main.go` for a Golang project.
