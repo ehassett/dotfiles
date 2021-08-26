@@ -73,6 +73,28 @@ function cmd {
   fi
 }
 
+# tf_prompt_info function
+## Outputs the current Terraform workspace if .terraform exists
+function tf_prompt_info {
+  if [[ -d ./.terraform ]]; then
+    echo "tf:($(terraform workspace show))"
+  else
+    echo ""
+  fi
+}
+
+# prompt_info function
+## Wrapper function for zsh prompt info
+function prompt_info {
+  if [[ -z $1 ]]; then
+    echo "%{\e[0;36m%}$2"
+  elif [[ -z $2 ]]; then
+    echo "%{\e[0;36m%}$1"
+  else
+    echo "%{\e[0;36m%}$1%{\e[1;91m%}|%{\e[0;36m%}$2"
+  fi
+}
+
 # Load nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
