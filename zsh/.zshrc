@@ -4,8 +4,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin"
 
 eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
 eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
