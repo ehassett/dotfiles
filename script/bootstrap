@@ -101,8 +101,12 @@ echo "--------------------------------"
 echo "Installing Git Accessories"
 echo "--------------------------------"
 echo "# git-secret"
-sudo sh -c "echo 'deb https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main' >> /etc/apt/sources.list"
-wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
+if [[ -z $(cat /etc/apt/sources.list | grep git-secret) ]]; then
+  sudo sh -c "echo 'deb https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main' >> /etc/apt/sources.list"
+  wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
+else
+  echo "git-secret apt source exists already"
+fi
 sudo apt-get update && sudo apt-get install -y git-secret
 echo "# git-chglog"
 go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
