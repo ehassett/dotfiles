@@ -148,6 +148,14 @@ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(l
 sudo apt-get update && sudo apt-get install -y packer
 
 echo "--------------------------------"
+echo "Installing AWS CLI"
+echo "--------------------------------"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+unzip -q /tmp/awscliv2.zip -d /tmp
+/tmp/aws/install
+rm -rf /tmp/aws /tmp/awscliv2.zip
+
+echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 #cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.
