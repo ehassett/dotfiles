@@ -156,7 +156,7 @@ sudo /tmp/aws/install --update
 rm -rf /tmp/aws /tmp/awscliv2.zip
 
 echo "--------------------------------"
-echo "Copying Files"
+echo "Copying Files and Setting Shell"
 echo "--------------------------------"
 #cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.
 sudo cp tmux/.tmux.conf ~/.tmux.conf
@@ -165,6 +165,8 @@ sudo cp vim/.vimrc ~/.vimrc
 sudo mkdir -p ~/.oh-my-zsh/themes && sudo cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
 sudo cp zsh/.zshrc ~/.zshrc
 sudo mkdir -p ~/.dir_colors && sudo cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
+
+chsh -s /bin/zsh
 
 echo "--------------------------------"
 echo "System has been bootstrapped successfully, Happy Hacking!"
