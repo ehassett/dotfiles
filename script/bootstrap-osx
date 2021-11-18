@@ -1,0 +1,52 @@
+#!/bin/bash -e
+
+echo "--------------------------------"
+echo "Installing Homebrew"
+echo "--------------------------------"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+echo "--------------------------------"
+echo "Installing Dependencies"
+echo "--------------------------------"
+brew install gpg \
+  keychain \
+  tmux \
+  tmuxinator \
+  tree
+
+echo "--------------------------------"
+echo "Installing Oh My Zsh"
+echo "--------------------------------"
+if [[ -d ~/.oh-my-zsh ]]; then
+  echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
+else
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
+
+echo "--------------------------------"
+echo "Installing Vim Plugins"
+echo "--------------------------------"
+if [[ -d ~/.vim/autoload ]] || [[ -d ~/.vim/bundle ]]; then
+  echo "WARN: Autoload and Bundle directories already exist under ~/.vim, skipping..."
+else
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  git clone https://github.com/lilydjwg/colorizer ~/.vim/bundle
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+  git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+fi
+
+echo "--------------------------------"
+echo "Copying Files"
+echo "--------------------------------"
+cp tmux/.tmux.conf ~/.tmux.conf
+mkdir -p ~/.tmuxinator && cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
+cp vim/.vimrc ~/.vimrc
+mkdir -p ~/.oh-my-zsh/themes && cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
+cp zsh/.zshrc-osx ~/.zshrc
+
+echo "--------------------------------"
+echo "System has been bootstrapped successfully, Happy Hacking!"
+echo "--------------------------------"
