@@ -9,6 +9,7 @@ Windows Terminal
 # Installation
 
 To install all the packages and plugins listed below, clone this repo and run `script/bootstrap`.
+
 A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 
 ## Packages/Plugins
@@ -55,9 +56,9 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 # Compatibilty
-Main `script/bootstrap` tested on Ubuntu 18.04, 20.04, and Ubuntu 18.04, 19.10, 20.04 for WSL.
-ARM64 `script/bootstrap-arm64` tested on Ubuntu 20.04 ARM (RPi 3).
-OSx `script/bootstrap-osx` tested on OSx Big Sur with Apple Silicon.
+* Main `script/bootstrap` tested on Ubuntu 18.04, 20.04, and Ubuntu 18.04, 19.10, 20.04 for WSL.
+* ARM64 `script/bootstrap-arm64` tested on Ubuntu 20.04 ARM (RPi 3).
+* OSx `script/bootstrap-osx` tested on OSx Big Sur with Apple Silicon.
 
 # Notes
 ## Docker

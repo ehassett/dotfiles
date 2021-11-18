@@ -5,15 +5,15 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
 
-eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
 
 plugins=(
   git
 )
 
-# Load oh-my-zsh and brew
+# Load oh-my-zsh, brew, and keychain
 source $ZSH/oh-my-zsh.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(keychain --agents ssh --attempts 3 --eval id_rsa)"
 
 # Custom aliases
 alias c="clear"
