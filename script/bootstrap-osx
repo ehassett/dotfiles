@@ -12,8 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "--------------------------------"
 echo "Installing Dependencies"
 echo "--------------------------------"
-brew install git-chglog \
-  gpg \
+brew install gpg \
   keychain \
   tmux \
   tmuxinator \
@@ -49,6 +48,12 @@ sudo installer -pkg /tmp/go$GO_VERSION.pkg -target /
 rm /tmp/go$GO_VERSION.pkg
 export PATH="$PATH:/usr/local/go/bin"
 mkdir -p ~/go/src
+
+echo "--------------------------------"
+echo "Installing git-chglog"
+echo "--------------------------------"
+brew tap git-chglog/git-chglog
+brew install git-chglog
 
 echo "--------------------------------"
 echo "Copying Files"
