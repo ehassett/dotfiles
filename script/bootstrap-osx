@@ -12,7 +12,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "--------------------------------"
 echo "Installing Dependencies"
 echo "--------------------------------"
-brew install gpg \
+brew install git-chglog \
+  gpg \
   keychain \
   tmux \
   tmuxinator \
