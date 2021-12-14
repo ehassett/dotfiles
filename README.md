@@ -23,6 +23,9 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 * [go](https://golang.org/)
   * Version specified at the top of [script/bootstrap](script/bootstrap)
 
+* [Hyper](https://hyper.is) (See notes below)
+  * [.hyper.js](hyper/.hyper.js)
+
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
 
 * [node](https://nodejs.org/en/)
@@ -63,6 +66,9 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 # Notes
 ## Docker
 After installing docker, you may need to follow [these instructions](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to allow non-root users to manage docker.
+
+## Hyper
+`script/bootstrap` does not install Hyper or copy `.hyper.js`.
 
 ## Windows Terminal
 `script/bootstrap` does not install Windows Terminal or copy `settings.json`.
