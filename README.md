@@ -78,4 +78,4 @@ After installing docker, you may need to follow [these instructions](https://doc
 
 Alias notes:
 * `git changelog`: Utilizes `git-chglog` to update the `CHANGELOG.md` file and tags in a repository.
-* `git newver`: Extends `git changelog` to update the version string in `README.md` and `main.go` for a Golang project.
+* `git gover`: Update the version string in `README.md` and `main.go` for a Golang project. Ideally used in conjuntion with the [GoReleaser Action](https://github.com/goreleaser/goreleaser-action)

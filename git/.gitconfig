@@ -1,3 +1,3 @@
 [alias]
   changelog = !git-chglog --next-tag $1 -o CHANGELOG.md && git add . && git commit -m 'Update changelog' && git tag $1 && git push && git push --tags && :
-	newver = "!f() { old=`git describe --tags --abbrev=0`; sed -i s/$old/$1/g main.go && sed -i s/$old/$1/g README.md; git commit -am 'Update version'; git changelog $1;	}; f"
+	gover = "!f() { old=`git describe --tags --abbrev=0 | sed 's/v//'`; sed -i '' s/$old/$1/g main.go && sed -i '' s/$old/$1/g README.md; git add . && git commit -m 'doc: Update version strings'; git tag v$1 && git push && git push --tags;	}; f"
