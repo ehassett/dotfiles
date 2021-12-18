@@ -23,6 +23,8 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 * [go](https://golang.org/)
   * Version specified at the top of [script/bootstrap](script/bootstrap)
 
+* [Homebrew](https://brew.sh)
+
 * [Hyper](https://hyper.is) (See notes below)
   * [.hyper.js](hyper/.hyper.js)
 

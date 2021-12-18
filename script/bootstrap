@@ -38,6 +38,11 @@ sudo apt-get install -y \
   zsh
 
 echo "--------------------------------"
+echo "Installing Homebrew"
+echo "--------------------------------"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo "--------------------------------"
 echo "Installing Docker and Docker Compose"
 echo "--------------------------------"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -117,8 +122,8 @@ echo "--------------------------------"
 echo "Installing Terraform and Accessories"
 echo "--------------------------------"
 echo "# tfvm"
-wget -q -O - https://raw.githubusercontent.com/ethanhassett/tfvm/main/install.sh | bash
-export PATH="$PATH:$HOME/.tfvm/bin"
+brew tap ethanhassett/tfvm
+brew install ethanhassett/tfvm
 echo "# Terraform v$TERRAFORM_VERSION"
 if [[ $(tfvm list | grep $TERRAFORM_VERSION) ]]; then
   echo "Terraform v$TERRAFORM_VERSION is already installed."
