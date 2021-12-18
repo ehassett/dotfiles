@@ -123,7 +123,7 @@ echo "Installing Terraform and Accessories"
 echo "--------------------------------"
 echo "# tfvm"
 brew tap ethanhassett/tfvm
-brew install ethanhassett/tfvm
+brew install tfvm
 echo "# Terraform v$TERRAFORM_VERSION"
 if [[ $(tfvm list | grep $TERRAFORM_VERSION) ]]; then
   echo "Terraform v$TERRAFORM_VERSION is already installed."
