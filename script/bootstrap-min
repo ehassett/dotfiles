@@ -1,0 +1,81 @@
+#!/bin/bash -e
+
+DOCKER_COMPOSE_VERSION="1.29.2"
+
+echo "--------------------------------"
+echo "Installing Apt Dependencies"
+echo "--------------------------------"
+sudo apt-get update && sudo apt-get upgrade -y
+
+sudo apt-get install -y \
+  apt-transport-https \
+  autoconf \
+  automake \
+  bison \
+  build-essential \
+  ca-certificates \
+  curl \
+  git \
+  gnupg gnupg-agent \
+  gpg \
+  keychain \
+  libc6-dev libssl-dev libtool libxml2-dev libyaml-dev \
+  lsb-release \
+  openssl \
+  silversearcher-ag \
+  software-properties-common \
+  tmux \
+  tree \
+  unzip \
+  vim \
+  zlib1g zlib1g-dev \
+  zsh
+
+echo "--------------------------------"
+echo "Installing Docker and Docker Compose"
+echo "--------------------------------"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+echo "--------------------------------"
+echo "Installing Shell Accessories"
+echo "--------------------------------"
+echo "# oh-my-zsh"
+if [[ -d ~/.oh-my-zsh ]]; then
+  echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
+else
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
+
+echo "--------------------------------"
+echo "Installing Vim Plugins"
+echo "--------------------------------"
+if [[ -d ~/.vim/autoload ]] || [[ -d ~/.vim/bundle ]]; then
+  echo "WARN: Autoload and Bundle directories already exist under ~/.vim, skipping..."
+else
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  git clone https://github.com/lilydjwg/colorizer ~/.vim/bundle
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+  git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+fi
+
+echo "--------------------------------"
+echo "Copying Files and Setting Shell"
+echo "--------------------------------"
+sudo cp tmux/.tmux.conf ~/.tmux.conf
+sudo cp vim/.vimrc ~/.vimrc
+sudo mkdir -p ~/.oh-my-zsh/themes && sudo cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
+sudo cp zsh/.zshrc ~/.zshrc
+sudo mkdir -p ~/.dir_colors && sudo cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
+
+chsh -s /bin/zsh
+
+echo "--------------------------------"
+echo "System has been bootstrapped successfully, Happy Hacking!"
+echo "--------------------------------"
