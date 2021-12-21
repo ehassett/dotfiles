@@ -14,16 +14,11 @@ plugins=(
   docker-compose
   git
   golang
-  node
-  npm
-  nvm
-  rvm
   terraform
 )
 
-# Load oh-my-zsh and rvm
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-source $HOME/.rvm/scripts/rvm
 
 # Custom aliases
 alias c="clear"
@@ -93,10 +88,6 @@ function prompt_info {
     echo "%{\e[0;36m%}$1%{\e[1;91m%}|%{\e[0;36m%}$2"
   fi
 }
-
-# Load nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Add tfvm to PATH
 export PATH="$PATH:$HOME/.tfvm/bin"

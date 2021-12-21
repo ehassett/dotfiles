@@ -30,19 +30,7 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
 
-* [node](https://nodejs.org/en/)
-  * Version specified at the top of [script/bootstrap](script/bootstrap)
-  * [nvm](https://github.com/nvm-sh/nvm)
-    * Version specified at the top of [script/bootstrap](script/bootstrap)
-
-* [packer](https://packer.io)
-
-* [ruby](https://www.ruby-lang.org)
-  * Version specified at the top of [script/bootstrap](script/bootstrap)
-  * [rvm](https://rvm.io)
-
 * [terraform](https://terraform.io)
-  * Version specified at the top of [script/bootstrap](script/bootstrap)
   * [tfvm](https://github.com/ethanhassett/tfvm)
 
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
@@ -62,13 +50,9 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 
 # Compatibilty
 * Main `script/bootstrap` tested on Ubuntu 18.04, 20.04, and Ubuntu 18.04, 19.10, 20.04 for WSL.
-* ARM64 `script/bootstrap-arm64` tested on Ubuntu 20.04 ARM (RPi 3).
 * OSx `script/bootstrap-osx` tested on OSx Big Sur with Apple Silicon.
 
 # Notes
-## Docker
-After installing docker, you may need to follow [these instructions](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) to allow non-root users to manage docker.
-
 ## Hyper
 `script/bootstrap` does not install Hyper or copy `.hyper.js`.
 

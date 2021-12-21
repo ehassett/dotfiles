@@ -1,11 +1,7 @@
 #!/bin/bash -e
 
-NVM_VERSION="0.38.0"
-NODE_VERSION="14.17.0"
-RUBY_VERSION="3.0.1"
 GO_VERSION="1.16.4"
-TERRAFORM_VERSION="1.0.5"
-DOCKER_COMPOSE_VERSION="1.29.2"
+DOCKER_COMPOSE_VERSION="2.2.2"
 
 echo "--------------------------------"
 echo "Installing Apt Dependencies"
@@ -45,29 +41,10 @@ echo "--------------------------------"
 echo "--------------------------------"
 echo "Installing Docker and Docker Compose"
 echo "--------------------------------"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -fsSL https://get.docker.com | sh
+sudo curl -L "https://github.com/docker/compose/releases/download/v$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
-echo "--------------------------------"
-echo "Installing Node"
-echo "--------------------------------"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$NVM_VERSION/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install $NODE_VERSION
-
-echo "--------------------------------"
-echo "Installing Ruby"
-echo "--------------------------------"
-gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -sSL https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
-rvm install $RUBY_VERSION
-gem update --system
+sudo usermod -a -G docker $USER
 
 echo "--------------------------------"
 echo "Installing Go"
@@ -87,7 +64,7 @@ else
   curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
 echo "# tmuxinator"
-gem install tmuxinator
+brew install tmuxinator
 
 echo "--------------------------------"
 echo "Installing Vim Plugins"
@@ -124,15 +101,9 @@ echo "--------------------------------"
 echo "# tfvm"
 brew tap ethanhassett/tfvm
 brew install tfvm
-echo "# Terraform v$TERRAFORM_VERSION"
-if [[ $(tfvm list | grep $TERRAFORM_VERSION) ]]; then
-  echo "Terraform v$TERRAFORM_VERSION is already installed."
-else
-  tfvm install $TERRAFORM_VERSION
-fi
-tfvm use $TERRAFORM_VERSION
+tfvm install
 echo "# terraform-docs"
-GO111MODULE="on" go get github.com/terraform-docs/terraform-docs@v0.15.0
+brew install terraform-docs
 echo "# tflint"
 curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 echo "# terrascan"
@@ -146,24 +117,8 @@ echo "# checkov"
 pip install checkov
 
 echo "--------------------------------"
-echo "Installing Packer"
-echo "--------------------------------"
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install -y packer
-
-echo "--------------------------------"
-echo "Installing AWS CLI"
-echo "--------------------------------"
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
-unzip -q /tmp/awscliv2.zip -d /tmp
-sudo /tmp/aws/install --update
-rm -rf /tmp/aws /tmp/awscliv2.zip
-
-echo "--------------------------------"
 echo "Copying Files and Setting Shell"
 echo "--------------------------------"
-#cp tmux/sysinfo.sh /usr/bin ##Removed temporarily until the script is fixed for WSL 2.
 sudo cp tmux/.tmux.conf ~/.tmux.conf
 sudo mkdir -p ~/.tmuxinator && sudo cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
 sudo cp vim/.vimrc ~/.vimrc
