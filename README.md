@@ -58,6 +58,7 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 
 ## Windows Terminal
 `script/bootstrap` does not install Windows Terminal or copy `settings.json`.
+The starting directory for Ubuntu-20.04 should be changed to your home directory (or whatever else you'd like).
 
 ## .gitconfig
 `script/bootstrap` does not copy `.gitconfig` as it only contains aliases.

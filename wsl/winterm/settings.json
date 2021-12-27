@@ -40,6 +40,7 @@
                 "hidden": false,
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl"
+                "startingDirectory": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\ehassett"
             },
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
