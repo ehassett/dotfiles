@@ -50,6 +50,11 @@ export PATH="$PATH:/usr/local/go/bin"
 mkdir -p ~/go/src
 
 echo "--------------------------------"
+echo "Installing Node"
+echo "--------------------------------"
+brew install node
+
+echo "--------------------------------"
 echo "Installing git-chglog"
 echo "--------------------------------"
 brew tap git-chglog/git-chglog
