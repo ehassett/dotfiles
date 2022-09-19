@@ -1,3 +1,12 @@
 [alias]
   changelog = !git-chglog --next-tag $1 -o CHANGELOG.md && git add . && git commit -m 'Update changelog' && git tag $1 && git push && git push --tags && :
   gover = "!f() { old=`git describe --tags --abbrev=0 | sed 's/v//'`; sed -i '' s/$old/$1/g main.go && sed -i '' s/$old/$1/g README.md; git add . && git commit -m 'doc: Update version strings'; git tag v$1 && git push && git push --tags;	}; f"
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

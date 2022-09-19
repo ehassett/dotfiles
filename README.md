@@ -61,7 +61,7 @@ A more minimal bootstrap script for OSx is found at `script/bootstrap-osx`.
 The starting directory for Ubuntu-20.04 should be changed to your home directory (or whatever else you'd like).
 
 ## .gitconfig
-`script/bootstrap` does not copy `.gitconfig` as it only contains aliases.
+`script/bootstrap` does not copy `.gitconfig`.
 
 Alias notes:
 * `git changelog`: Utilizes `git-chglog` to update the `CHANGELOG.md` file and tags in a repository.
