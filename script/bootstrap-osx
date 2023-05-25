@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-GO_VERSION="1.16.4"
+GO_VERSION="1.18"
 
 echo "--------------------------------"
 echo "Installing Homebrew"
@@ -10,9 +10,10 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "--------------------------------"
-echo "Installing Dependencies"
+echo "Installing Dependencies & Shell Stuff"
 echo "--------------------------------"
-brew install gpg \
+brew install \
+  gpg \
   keychain \
   tmux \
   tmuxinator \
@@ -41,24 +42,21 @@ else
 fi
 
 echo "--------------------------------"
-echo "Installing Go"
+echo "Installing tfvm and terraform"
 echo "--------------------------------"
-curl -L -o /tmp/go$GO_VERSION.pkg https://golang.org/dl/go$GO_VERSION.darwin-arm64.pkg
-sudo installer -pkg /tmp/go$GO_VERSION.pkg -target /
-rm /tmp/go$GO_VERSION.pkg
-export PATH="$PATH:/usr/local/go/bin"
-mkdir -p ~/go/src
+brew tap ehassett/tfvm
+brew install tfvm
+tfvm install
 
 echo "--------------------------------"
-echo "Installing Node"
+echo "Installing Homebrew packages"
 echo "--------------------------------"
-brew install node
-
-echo "--------------------------------"
-echo "Installing git-chglog"
-echo "--------------------------------"
-brew tap git-chglog/git-chglog
-brew install git-chglog
+brew install \
+  awscli \
+  b2-tools \
+  go@$GO_VERSION \
+  node \
+  packer
 
 echo "--------------------------------"
 echo "Copying Files"
