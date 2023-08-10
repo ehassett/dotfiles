@@ -1,72 +1,37 @@
 #!/bin/bash -e
 
-GO_VERSION="1.16.4"
-DOCKER_COMPOSE_VERSION="2.2.2"
+GO_VERSION="1.18"
 
 echo "--------------------------------"
-echo "Installing Apt Dependencies"
+echo "Bootstrapping directories"
 echo "--------------------------------"
-sudo apt-get update && sudo apt-get upgrade -y
-
-sudo apt-get install -y \
-  apt-transport-https \
-  autoconf \
-  automake \
-  bison \
-  build-essential \
-  ca-certificates \
-  curl \
-  git \
-  gnupg gnupg-agent \
-  gpg \
-  keychain \
-  libc6-dev libssl-dev libtool libxml2-dev libyaml-dev \
-  lsb-release \
-  openssl \
-  python3 python3-pip \
-  silversearcher-ag \
-  software-properties-common \
-  tmux \
-  tree \
-  unzip \
-  vim \
-  zlib1g zlib1g-dev \
-  zsh
+mkdir -p ~/Developer/Code
 
 echo "--------------------------------"
 echo "Installing Homebrew"
 echo "--------------------------------"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-export PATH="$PATH:$HOME/.local/bin:/home/linuxbrew/.linuxbrew/bin"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "--------------------------------"
-echo "Installing Docker and Docker Compose"
+echo "Installing Dependencies & Shell Stuff"
 echo "--------------------------------"
-curl -fsSL https://get.docker.com | sh
-sudo curl -L "https://github.com/docker/compose/releases/download/v$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo usermod -a -G docker $USER
+brew install \
+  gpg \
+  keychain \
+  tmux \
+  tmuxinator \
+  tree
 
 echo "--------------------------------"
-echo "Installing Go"
+echo "Installing Oh My Zsh"
 echo "--------------------------------"
-curl -L -o /tmp/go$GO_VERSION.tar.gz https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf /tmp/go$GO_VERSION.tar.gz
-rm /tmp/go$GO_VERSION.tar.gz
-export PATH="$PATH:/usr/local/go/bin"
-
-
-echo "--------------------------------"
-echo "Installing Shell Accessories"
-echo "--------------------------------"
-echo "# oh-my-zsh"
 if [[ -d ~/.oh-my-zsh ]]; then
   echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
 else
   curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
-echo "# tmuxinator"
-brew install tmuxinator
 
 echo "--------------------------------"
 echo "Installing Vim Plugins"
@@ -82,53 +47,36 @@ else
 fi
 
 echo "--------------------------------"
-echo "Installing Git Accessories"
+echo "Installing tfvm and terraform"
 echo "--------------------------------"
-echo "# git-secret"
-if [[ -z $(cat /etc/apt/sources.list | grep git-secret) ]]; then
-  sudo sh -c "echo 'deb https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main' >> /etc/apt/sources.list"
-  wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
-else
-  echo "git-secret apt source exists already"
-fi
-sudo apt-get update && sudo apt-get install -y git-secret
-echo "# git-chglog"
-go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
-echo "# pre-commit"
-pip install pre-commit
-
-echo "--------------------------------"
-echo "Installing Terraform and Accessories"
-echo "--------------------------------"
-echo "# tfvm"
-brew tap ethanhassett/tfvm
+brew tap ehassett/tfvm
 brew install tfvm
 tfvm install
-echo "# terraform-docs"
-brew install terraform-docs
-echo "# tflint"
-curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-echo "# terrascan"
-curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > /tmp/terrascan.tar.gz
-tar -xf /tmp/terrascan.tar.gz -C /tmp terrascan
-sudo install /tmp/terrascan /usr/local/bin
-rm /tmp/terrascan.tar.gz /tmp/terrascan
-echo "# tfsec"
-go install github.com/aquasecurity/tfsec/cmd/tfsec@latest
-echo "# checkov"
-pip install checkov
 
 echo "--------------------------------"
-echo "Copying Files and Setting Shell"
+echo "Installing Homebrew packages"
 echo "--------------------------------"
-sudo cp tmux/.tmux.conf ~/.tmux.conf
-sudo mkdir -p ~/.tmuxinator && sudo cp tmuxinator/erhbg.yml ~/.tmuxinator/erhbg.yml
-sudo cp vim/.vimrc ~/.vimrc
-sudo mkdir -p ~/.oh-my-zsh/themes && sudo cp zsh/erhbg.zsh-theme ~/.oh-my-zsh/themes/erhbg.zsh-theme
-sudo cp zsh/.zshrc ~/.zshrc
-sudo mkdir -p ~/.dir_colors && sudo cp zsh/dircolors.256darksolarized ~/.dir_colors/dircolors.256darksolarized
+brew install \
+  awscli \
+  aws-vault \
+  go@$GO_VERSION
 
-chsh -s /bin/zsh
+echo "--------------------------------"
+echo "Installing granted"
+echo "--------------------------------"
+brew tap common-fate/granted
+brew install granted
+
+echo "--------------------------------"
+echo "Copying Files"
+echo "--------------------------------"
+cp git/.gitconfig ~/.gitconfig
+cp tmux/.tmux.conf ~/.tmux.conf
+mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
+cp vim/.vimrc ~/.vimrc
+cp vim/colors/monokai_pro/monokai_pro.vim ~/.vim/colors
+mkdir -p ~/.oh-my-zsh/themes && cp zsh/ehassett.zsh-theme ~/.oh-my-zsh/themes/ehassett.zsh-theme
+cp zsh/.zshrc-osx ~/.zshrc
 
 echo "--------------------------------"
 echo "System has been bootstrapped successfully, Happy Hacking!"

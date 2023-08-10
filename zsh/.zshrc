@@ -1,39 +1,30 @@
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME=erhbg
+export ZSH_THEME=ehassett
 export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
-export REPO_DIR=$HOME/Repos
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.tfvm/bin"
-
-eval $(keychain --agents ssh --attempts 3 --eval id_rsa)
-eval `dircolors ~/.dir_colors/dircolors.256darksolarized`
+export REPO_DIR=$HOME/Developer/Code
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.tfvm/bin"
+export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
-  docker
-  docker-compose
   git
-  golang
-  terraform
+  assume
+  granted
 )
 
-# Load oh-my-zsh
+# Load oh-my-zsh, brew, keychain, and assume
 source $ZSH/oh-my-zsh.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(keychain --agents ssh --attempts 3 --eval id_rsa)"
+alias assume="source assume"
 
 # Custom aliases
 alias c="clear"
 alias home="cd ~ && clear"
 alias rl="source ~/.zshrc && clear"
-alias ud="sudo apt update && sudo apt upgrade -y"
+alias ud="brew update && brew upgrade"
 alias mux="tmuxinator"
-## Terraform aliases
-alias tf="terraform"
-alias tfa="terraform apply"
-## WSL aliases
-alias pwsh="pwsh.exe"
-## Docker aliases
-alias dc="docker-compose"
-alias dcu="docker-compose up"
 
 # p(rojects) function
 compctl -K _p p
@@ -58,15 +49,6 @@ function p {
   clear
 }
 
-# cmd function
-function cmd {
-  if grep -q microsoft /proc/version; then
-    echo $1 | cmd.exe
-  else
-    echo "Cannot verify this as a WSL install, cmd will not work."
-  fi
-}
-
 # tf_prompt_info function
 ## Outputs the current Terraform workspace if .terraform exists
 function tf_prompt_info {
@@ -88,6 +70,3 @@ function prompt_info {
     echo "%{\e[0;36m%}$1%{\e[1;91m%}|%{\e[0;36m%}$2"
   fi
 }
-
-# Add tfvm to PATH
-export PATH="$PATH:$HOME/.tfvm/bin"
