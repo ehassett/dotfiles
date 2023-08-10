@@ -5,15 +5,19 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Repos
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.tfvm/bin"
+export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
   git
+  assume
+  granted
 )
 
-# Load oh-my-zsh, brew, and keychain
+# Load oh-my-zsh, brew, keychain, and assume
 source $ZSH/oh-my-zsh.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(keychain --agents ssh --attempts 3 --eval id_rsa)"
+alias assume="source assume"
 
 # Custom aliases
 alias c="clear"

@@ -53,10 +53,21 @@ echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
   awscli \
+  aws-vault \
   b2-tools \
   go@$GO_VERSION \
   node \
   packer
+
+echo "--------------------------------"
+echo "Installing granted"
+echo "--------------------------------"
+brew tap common-fate/granted
+brew install granted
+granted completion -s zsh
+mkdir -p ~/.oh-my-zsh/plugins/granted ~/.oh-my-zsh/plugins/assume
+cp ~/.granted/zsh_autocomplete/granted/_granted ~/.oh-my-zsh/plugins/granted/granted.plugin.zsh
+cp ~/.granted/zsh_autocomplete/assume/_assume ~/.oh-my-zsh/plugins/assume/assume.plugin.zsh
 
 echo "--------------------------------"
 echo "Copying Files"
