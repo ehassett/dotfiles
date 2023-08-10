@@ -76,7 +76,7 @@ mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
 cp vim/.vimrc ~/.vimrc
 cp vim/colors/monokai_pro/monokai_pro.vim ~/.vim/colors
 mkdir -p ~/.oh-my-zsh/themes && cp zsh/ehassett.zsh-theme ~/.oh-my-zsh/themes/ehassett.zsh-theme
-cp zsh/.zshrc-osx ~/.zshrc
+cp zsh/.zshrc ~/.zshrc
 
 echo "--------------------------------"
 echo "System has been bootstrapped successfully, Happy Hacking!"
