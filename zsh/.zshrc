@@ -9,8 +9,6 @@ export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
   git
-  assume
-  granted
 )
 
 # Load oh-my-zsh, brew, keychain, and assume
