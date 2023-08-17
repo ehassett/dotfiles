@@ -4,7 +4,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Developer/Code
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.tfvm/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin"
 export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
@@ -23,6 +23,7 @@ alias home="cd ~ && clear"
 alias rl="source ~/.zshrc && clear"
 alias ud="brew update && brew upgrade"
 alias mux="tmuxinator"
+alias tf="terraform"
 
 # p(rojects) function
 compctl -K _p p

@@ -47,13 +47,6 @@ else
 fi
 
 echo "--------------------------------"
-echo "Installing tfvm and terraform"
-echo "--------------------------------"
-brew tap ehassett/tfvm
-brew install tfvm
-tfvm install
-
-echo "--------------------------------"
 echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
@@ -65,6 +58,12 @@ echo "--------------------------------"
 echo "Installing Pulumi"
 echo "--------------------------------"
 brew install pulumi/tap/pulumi
+
+echo "--------------------------------"
+echo "Installing tfswitch and terraform"
+echo "--------------------------------"
+brew install warrensbox/tap/tfswitch
+tfswitch `tfswitch -U`
 
 echo "--------------------------------"
 echo "Installing granted"
