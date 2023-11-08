@@ -4,7 +4,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export REPO_DIR=$HOME/Developer/Code
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin/code"
 export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
