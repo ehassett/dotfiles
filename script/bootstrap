@@ -5,7 +5,8 @@ GO_VERSION="1.18"
 echo "--------------------------------"
 echo "Bootstrapping directories"
 echo "--------------------------------"
-mkdir -p ~/Developer/Code
+mkdir -p '~/Developer/Personal'
+mkdir -p '~/Developer/Auction Edge'
 
 echo "--------------------------------"
 echo "Installing Homebrew"
