@@ -51,7 +51,6 @@ echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
   awscli \
-  aws-vault \
   go@$GO_VERSION
 
 echo "--------------------------------"
