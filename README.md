@@ -46,5 +46,12 @@ To install all the packages and plugins listed below, clone this repo and run `s
 * [zsh](https://packages.ubuntu.com/bionic/zsh)
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
+## `ae`
+
+> [!NOTE]
+> Should be used by ehassett only and the directory is encrypted.
+
+To install AE-specific components, navigate to [ae](ae/) and run the `script/bootstrap` located there.
+
 # Compatibilty
 * `script/bootstrap` has been tested on Mac.

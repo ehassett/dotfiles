@@ -4,9 +4,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export P_DIR="$HOME/Developer/Personal"
-export AE_DIR="$HOME/Developer/Auction Edge"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin/code"
-export AWS_VAULT_KEYCHAIN_NAME=login
 
 plugins=(
   git
@@ -67,30 +65,6 @@ function p {
     cd $P_DIR/$1
   else
     echo "ERROR: $P_DIR/$1 does not exist"
-    return 1
-  fi
-  clear
-}
-
-# a(uction)e(dge) projects function
-## Type `ae <project>` to cd into an Auciton Edge project dir
-compctl -K _ae ae
-
-_ae() {
-  local word words completions
-  read -cA words
-  word="${words[2]}"
-
-  completions="$(ls $AE_DIR/)"
-
-  reply=("${(ps:\n:)completions}")
-}
-
-function ae {
-  if [[ -d $AE_DIR/$1 ]]; then
-    cd $AE_DIR/$1
-  else
-    echo "ERROR: $AE_DIR/$1 does not exist"
     return 1
   fi
   clear

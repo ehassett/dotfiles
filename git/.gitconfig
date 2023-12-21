@@ -1,3 +1,6 @@
+[includeIf "gitdir:~/Developer/Personal/**"]
+    path = .gitconfig-personal
+
 [init]
 	defaultBranch = main
 [push]

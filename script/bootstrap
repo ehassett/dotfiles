@@ -6,7 +6,6 @@ echo "--------------------------------"
 echo "Bootstrapping directories"
 echo "--------------------------------"
 mkdir -p '~/Developer/Personal'
-mkdir -p '~/Developer/Auction Edge'
 
 echo "--------------------------------"
 echo "Installing Homebrew"
@@ -74,7 +73,7 @@ brew install granted
 echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
-cp git/.gitconfig ~/.gitconfig
+cp git/.gitconfig* ~
 cp tmux/.tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
 cp vim/.vimrc ~/.vimrc

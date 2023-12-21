@@ -1,0 +1,6 @@
+.gitsecret/keys/random_seed
+!*.secret
+ae/git/.gitconfig-ae
+ae/script/bootstrap
+ae/zsh/.zshrc
+ae/aws/config
