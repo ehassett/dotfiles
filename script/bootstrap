@@ -5,7 +5,7 @@ GO_VERSION="1.18"
 echo "--------------------------------"
 echo "Bootstrapping directories"
 echo "--------------------------------"
-mkdir -p ~/Developer/Code
+mkdir -p '~/Developer/Personal'
 
 echo "--------------------------------"
 echo "Installing Homebrew"
@@ -51,7 +51,6 @@ echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
   awscli \
-  aws-vault \
   go@$GO_VERSION
 
 echo "--------------------------------"
@@ -74,7 +73,7 @@ brew install granted
 echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
-cp git/.gitconfig ~/.gitconfig
+cp git/.gitconfig* ~
 cp tmux/.tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
 cp vim/.vimrc ~/.vimrc
