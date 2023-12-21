@@ -53,5 +53,13 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 To install AE-specific components, navigate to [ae](ae/) and run the `script/bootstrap` located there.
 
+### pre-commit
+```
+git-secret hide
+git add .gitsecret
+git add ae/**/*.secret
+git add ae/**/.*.secret
+```
+
 # Compatibilty
 * `script/bootstrap` has been tested on Mac.
