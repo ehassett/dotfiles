@@ -74,6 +74,7 @@ echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 cp git/.gitconfig* ~
+mkdir -p ~/.aws && cp aws/config ~/.aws/config
 cp tmux/.tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
 cp vim/.vimrc ~/.vimrc
