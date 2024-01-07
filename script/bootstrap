@@ -51,12 +51,9 @@ echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
   awscli \
-  go@$GO_VERSION
-
-echo "--------------------------------"
-echo "Installing Pulumi"
-echo "--------------------------------"
-brew install pulumi/tap/pulumi
+  go@$GO_VERSION \
+  opentofu \
+  pulumi/tap/pulumi
 
 echo "--------------------------------"
 echo "Installing tfswitch and terraform"

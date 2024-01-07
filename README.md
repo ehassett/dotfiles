@@ -28,6 +28,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
 
+* [opentofu](https://opentofu.org)
+
 * [pulumi](https://www.pulumi.com)
 
 * [terraform](https://terraform.io)
