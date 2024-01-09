@@ -51,9 +51,11 @@ echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
   awscli \
+  checkov \
   go@$GO_VERSION \
   opentofu \
-  pulumi/tap/pulumi
+  pulumi/tap/pulumi \
+  tflint
 
 echo "--------------------------------"
 echo "Installing tfswitch and terraform"

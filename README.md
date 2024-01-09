@@ -23,6 +23,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
   * [AWS cli](https://aws.amazon.com/cli/)
   * [granted](https://docs.commonfate.io/granted/introduction)
 
+* [checkov](https://www.checkov.io)
+
 * [go](https://golang.org/)
   * Version specified at the top of [script/bootstrap](script/bootstrap)
 
@@ -34,6 +36,7 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [terraform](https://terraform.io)
   * [tfswitch](https://tfswitch.warrensbox.com/)
+  * [tflint](https://github.com/terraform-linters/tflint)
 
 * [tmux](https://packages.ubuntu.com/bionic/tmux)
   * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
