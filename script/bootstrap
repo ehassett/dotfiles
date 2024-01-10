@@ -55,6 +55,7 @@ brew install \
   go@$GO_VERSION \
   opentofu \
   pulumi/tap/pulumi \
+  terraform-docs \
   tflint
 
 echo "--------------------------------"
