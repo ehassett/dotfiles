@@ -34,6 +34,8 @@ To install all the packages and plugins listed below, clone this repo and run `s
 
 * [pulumi](https://www.pulumi.com)
 
+* [spacectl](https://docs.spacelift.io/concepts/spacectl)
+
 * [terraform](https://terraform.io)
   * [terraform-docs](https://terraform-docs.io)
   * [tfswitch](https://tfswitch.warrensbox.com/)

@@ -55,6 +55,7 @@ brew install \
   go@$GO_VERSION \
   opentofu \
   pulumi/tap/pulumi \
+  spacelift-io/spacelift/spacectl \
   terraform-docs \
   tflint
 
