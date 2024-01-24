@@ -26,9 +26,14 @@ To install all the packages and plugins listed below, clone this repo and run `s
 * [checkov](https://www.checkov.io)
 
 * [go](https://golang.org/)
-  * Version specified at the top of [script/bootstrap](script/bootstrap)
+  * Latest version in Homebrew
+
+* [helm](https://helm.sh)
 
 * [keychain](https://packages.ubuntu.com/bionic/keychain)
+
+* [node](https://nodejs.org)
+  * Latest version in Homebrew
 
 * [opentofu](https://opentofu.org)
 

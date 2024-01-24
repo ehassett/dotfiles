@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-GO_VERSION="1.18"
-
 echo "--------------------------------"
 echo "Bootstrapping directories"
 echo "--------------------------------"
@@ -52,13 +50,15 @@ echo "--------------------------------"
 brew install \
   awscli \
   checkov \
-  go@$GO_VERSION \
+  go \
+  helm \
+  node \
   opentofu \
   pulumi/tap/pulumi \
   spacelift-io/spacelift/spacectl \
   terraform-docs \
-  tflint
-
+  tflint 
+  
 echo "--------------------------------"
 echo "Installing tfswitch and terraform"
 echo "--------------------------------"
