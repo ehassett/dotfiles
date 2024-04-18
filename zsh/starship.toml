@@ -1,0 +1,59 @@
+command_timeout = 1000
+
+format = """
+$username\
+$hostname\
+$localip\
+$directory\
+$git_branch\
+$git_status\
+$golang\
+$nodejs\
+$python\
+$helm\
+$terraform\
+$aws\
+$gcloud\
+$line_break\
+$character"""
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+stashed = '≡'
+untracked =	'?'
+modified = '!'
+staged = '+'
+renamed =	'»'
+deleted =	'✘'
+
+[golang]
+format = '\[[$symbol($version)]($style)\]'
+symbol = 'go@'
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+symbol = 'node@'
+
+[python]
+format = '\[[$symbol($version)]($style)\]'
+symbol = 'py@'
+
+[helm]
+format = '\[[$symbol($version)]($style)\]'
+symbol = 'helm@'
+
+[terraform]
+format = '\[[$symbol($version): $workspace]($style)\]'
+symbol = 'tf@'
+style = 'bold green'
+
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+symbol = 'aws: '
+
+[gcloud]
+format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
+symbol = 'gcp: '

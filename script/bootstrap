@@ -6,6 +6,11 @@ echo "--------------------------------"
 mkdir -p '~/Developer/Personal'
 
 echo "--------------------------------"
+echo "Installing fonts"
+echo "--------------------------------"
+unzip src/Source_Code_Pro.zip -d ~/Library/Fonts/Source_Code_Pro
+
+echo "--------------------------------"
 echo "Installing Homebrew"
 echo "--------------------------------"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -13,13 +18,23 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "--------------------------------"
-echo "Installing Dependencies & Shell Stuff"
+echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
+  awscli \
+  checkov \
+  common-fate/granted/granted \
+  go \
   gpg \
+  helm \
   keychain \
-  tmux \
-  tmuxinator \
+  node \
+  opentofu \
+  pulumi/tap/pulumi \
+  spacelift-io/spacelift/spacectl \
+  starship \
+  terraform-docs \
+  tflint \
   tree
 
 echo "--------------------------------"
@@ -43,21 +58,6 @@ else
   git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
   git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
 fi
-
-echo "--------------------------------"
-echo "Installing Homebrew packages"
-echo "--------------------------------"
-brew install \
-  awscli \
-  checkov \
-  go \
-  helm \
-  node \
-  opentofu \
-  pulumi/tap/pulumi \
-  spacelift-io/spacelift/spacectl \
-  terraform-docs \
-  tflint 
   
 echo "--------------------------------"
 echo "Installing tfswitch and terraform"
@@ -66,22 +66,25 @@ brew install warrensbox/tap/tfswitch
 tfswitch `tfswitch -U`
 
 echo "--------------------------------"
-echo "Installing granted"
+echo "Installing warp"
 echo "--------------------------------"
-brew tap common-fate/granted
-brew install granted
+brew install --cask warp
 
 echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 cp git/.gitconfig* ~
 mkdir -p ~/.aws && cp aws/config ~/.aws/config
-cp tmux/.tmux.conf ~/.tmux.conf
-mkdir -p ~/.tmuxinator && cp tmuxinator/ehassett.yml ~/.tmuxinator/ehassett.yml
 cp vim/.vimrc ~/.vimrc
 cp vim/colors/monokai_pro/monokai_pro.vim ~/.vim/colors
-mkdir -p ~/.oh-my-zsh/themes && cp zsh/ehassett.zsh-theme ~/.oh-my-zsh/themes/ehassett.zsh-theme
 cp zsh/.zshrc ~/.zshrc
+mkdir -p ~/.warp/themes/ && cp warp/monokai_pro.yaml ~/.warp/themes/
+mkdir -p ~/.config/ && cp zsh/starship.toml ~/.config/
+
+# Copy VSCode settings if it's installed
+if [[ -d "~/Library/Application Support/Code/User" ]]; then
+  cp vscode/settings.json "~/Library/Application Support/Code/User/"
+fi
 
 echo "--------------------------------"
 echo "System has been bootstrapped successfully, Happy Hacking!"
