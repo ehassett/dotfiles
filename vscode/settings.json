@@ -5,6 +5,10 @@
     "strings": true
   },
   "editor.tabSize": 2,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.scss": "tailwindcss"
+  },
   "git.autofetch": true,
   "git.confirmSync": false,
   "go.toolsManagement.autoUpdate": true,
@@ -24,5 +28,6 @@
   "window.restoreWindows": "preserve",
   "workbench.colorTheme": "Monokai Pro",
   "workbench.iconTheme": "Monokai Pro Icons",
-  "javascript.updateImportsOnFileMove.enabled": "always"
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.startupEditor": "none"
 }
