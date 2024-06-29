@@ -21,14 +21,14 @@ echo "--------------------------------"
 echo "Installing Homebrew packages"
 echo "--------------------------------"
 brew install \
+  asdf \
   awscli \
   checkov \
   common-fate/granted/granted \
-  go \
+  coreutils \
   gpg \
   helm \
   keychain \
-  node \
   opentofu \
   pulumi/tap/pulumi \
   spacelift-io/spacelift/spacectl \
@@ -58,12 +58,16 @@ else
   git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
   git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
 fi
-  
+
 echo "--------------------------------"
-echo "Installing tfswitch and terraform"
+echo "Installing asdf plugins"
 echo "--------------------------------"
-brew install warrensbox/tap/tfswitch
-tfswitch `tfswitch -U`
+asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+asdf install terraform latest
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+asdf install golang latest
 
 echo "--------------------------------"
 echo "Installing warp"

@@ -11,6 +11,7 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 | ![terraform](src/terraform.png) | ![go](src/go.png) |
 
 # Contents
+
 - [dotfiles](#dotfiles)
 - [Contents](#contents)
 - [Prerequisites](#prerequisites)
@@ -25,7 +26,7 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 
 1. Xcode Command Line Tools: install with `xcode-select --install`
 2. [VSCode](https://code.visualstudio.com/download) (optional)
-    * `script/bootstrap` will copy settings if installed
+   - `script/bootstrap` will copy settings if installed
 
 # Installation
 
@@ -33,50 +34,55 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 ## Packages/Plugins
 
-* [Homebrew](https://brew.sh)
+- [Homebrew](https://brew.sh)
 
-* AWS
-  * [aws cli](https://aws.amazon.com/cli/)
-  * [granted](https://docs.commonfate.io/granted/introduction)
+- [asdf](https://asdf-vm.com)
 
-* [checkov](https://www.checkov.io)
+- AWS
 
-* [go](https://golang.org/)
+  - [aws cli](https://aws.amazon.com/cli/)
+  - [granted](https://docs.commonfate.io/granted/introduction)
 
-* [helm](https://helm.sh)
+- [checkov](https://www.checkov.io)
 
-* [keychain](https://packages.ubuntu.com/bionic/keychain)
+- [go](https://golang.org/)
 
-* [node](https://nodejs.org)
+- [helm](https://helm.sh)
 
-* [opentofu](https://opentofu.org)
+- [keychain](https://packages.ubuntu.com/bionic/keychain)
 
-* [pulumi](https://www.pulumi.com)
+- [node](https://nodejs.org)
 
-* [spacectl](https://docs.spacelift.io/concepts/spacectl)
+- [opentofu](https://opentofu.org)
 
-* [terraform](https://terraform.io)
-  * [terraform-docs](https://terraform-docs.io)
-  * [tfswitch](https://tfswitch.warrensbox.com/)
-  * [tflint](https://github.com/terraform-linters/tflint)
+- [pulumi](https://www.pulumi.com)
 
-* [vim](https://packages.ubuntu.com/bionic/vim)
-  * [colorizer](https://github.com/lilydjwg/colorizer)
-  * [NERDTree](https://github.com/scrooloose/nerdtree)
-  * [pathogen](https://github.com/tpope/vim-pathogen)
-  * [vim-surround](https://github.com/tpope/vim-surround)
-  * [monokai-pro](https://github.com/phanviet/vim-monokai-pro)
+- [spacectl](https://docs.spacelift.io/concepts/spacectl)
 
-* [Warp](https://www.warp.dev)
-  * Settings will need manually adjusted - choose `Source Code Pro` as font and `Monokai Pro` as theme
+- [terraform](https://terraform.io)
 
-* [zsh](https://packages.ubuntu.com/bionic/zsh)
-  * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-  * [starship](https://starship.rs)
+  - [terraform-docs](https://terraform-docs.io)
+  - [tflint](https://github.com/terraform-linters/tflint)
+
+- [vim](https://packages.ubuntu.com/bionic/vim)
+
+  - [colorizer](https://github.com/lilydjwg/colorizer)
+  - [NERDTree](https://github.com/scrooloose/nerdtree)
+  - [pathogen](https://github.com/tpope/vim-pathogen)
+  - [vim-surround](https://github.com/tpope/vim-surround)
+  - [monokai-pro](https://github.com/phanviet/vim-monokai-pro)
+
+- [Warp](https://www.warp.dev)
+
+  - Settings will need manually adjusted - choose `Source Code Pro` as font and `Monokai Pro` as theme
+
+- [zsh](https://packages.ubuntu.com/bionic/zsh)
+  - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+  - [starship](https://starship.rs)
 
 ## Fonts
 
-* [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro)
+- [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro)
 
 ## `ae`
 
@@ -86,6 +92,7 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 To install AE-specific components, navigate to [ae](ae/) and run the `script/bootstrap` located there.
 
 ### pre-commit
+
 ```
 git-secret hide
 git add .gitsecret
@@ -94,4 +101,5 @@ git add ae/**/.*.secret
 ```
 
 # Compatibilty
-* `script/bootstrap` has been tested on Mac.
+
+- `script/bootstrap` has been tested on Mac.

@@ -2,6 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME=""
 plugins=(
+  asdf
   aws
   git
   golang
