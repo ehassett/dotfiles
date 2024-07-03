@@ -16,7 +16,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
 export P_DIR="$HOME/Developer/Personal"
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin/code"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin/code:$HOME/.asdf/shims"
 
 # Load Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
