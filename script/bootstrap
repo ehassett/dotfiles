@@ -30,6 +30,7 @@ brew install \
   helm \
   keychain \
   opentofu \
+  parallels \
   pulumi/tap/pulumi \
   spacelift-io/spacelift/spacectl \
   starship \

@@ -55,6 +55,8 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [opentofu](https://opentofu.org)
 
+- [parallels](https://parallels.com)
+
 - [pulumi](https://www.pulumi.com)
 
 - [spacectl](https://docs.spacelift.io/concepts/spacectl)
