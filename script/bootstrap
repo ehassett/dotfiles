@@ -29,9 +29,7 @@ brew install \
   gpg \
   helm \
   keychain \
-  opentofu \
   parallels \
-  pulumi/tap/pulumi \
   spacelift-io/spacelift/spacectl \
   starship \
   terraform-docs \
@@ -63,12 +61,21 @@ fi
 echo "--------------------------------"
 echo "Installing asdf plugins"
 echo "--------------------------------"
-asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
-asdf install terraform latest && asdf global terraform latest
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest && asdf global nodejs latest
-asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-asdf install golang latest && asdf global golang latest
+asdf plugin add golang \
+  && asdf install golang latest \
+  && asdf global golang latest
+asdf plugin add nodejs \
+  && asdf install nodejs latest \
+  && asdf global nodejs latest
+asdf plugin add opentofu \
+  && asdf install opentofu latest \
+  && asdf global opentofu latest
+asdf plugin add pulumi \
+  && asdf install pulumi latest \
+  && asdf global pulumi latest
+asdf plugin add terraform \
+  && asdf install terraform latest \
+  && asdf global terraform latest
 
 echo "--------------------------------"
 echo "Installing warp"
