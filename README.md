@@ -45,6 +45,8 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [checkov](https://www.checkov.io)
 
+- [gcloud](https://cloud.google.com/cli)
+
 - [go](https://golang.org/)
 
 - [helm](https://helm.sh)

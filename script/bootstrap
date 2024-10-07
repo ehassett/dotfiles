@@ -61,6 +61,9 @@ fi
 echo "--------------------------------"
 echo "Installing asdf plugins"
 echo "--------------------------------"
+asdf plugin add gcloud \
+  && asdf install gcloud latest \
+  && asdf global gcloud latest
 asdf plugin add golang \
   && asdf install golang latest \
   && asdf global golang latest

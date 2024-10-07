@@ -57,3 +57,4 @@ symbol = 'aws: '
 [gcloud]
 format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
 symbol = 'gcp: '
+disabled = true
