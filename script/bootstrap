@@ -26,8 +26,9 @@ brew install \
   checkov \
   common-fate/granted/granted \
   coreutils \
+  git-secret \
   gpg \
-  helm \
+  jq \
   keychain \
   parallels \
   spacelift-io/spacelift/spacectl \

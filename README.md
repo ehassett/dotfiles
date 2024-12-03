@@ -47,9 +47,11 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [gcloud](https://cloud.google.com/cli)
 
+- [git-secret](https://sobolevn.me/git-secret/)
+
 - [go](https://golang.org/)
 
-- [helm](https://helm.sh)
+- [jq](https://jqlang.github.io/jq/)
 
 - [keychain](https://packages.ubuntu.com/bionic/keychain)
 
