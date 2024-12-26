@@ -1,49 +1,121 @@
 #!/bin/bash -e
 
-echo "--------------------------------"
-echo "Bootstrapping directories"
-echo "--------------------------------"
-mkdir -p '~/Developer/Personal'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "--------------------------------"
+  echo "Bootstrapping directories"
+  echo "--------------------------------"
+  mkdir -p '~/Developer/Personal'
 
-echo "--------------------------------"
-echo "Installing fonts"
-echo "--------------------------------"
-unzip src/Source_Code_Pro.zip -d ~/Library/Fonts/Source_Code_Pro
+  echo "--------------------------------"
+  echo "Installing fonts"
+  echo "--------------------------------"
+  unzip src/Source_Code_Pro.zip -d ~/Library/Fonts/Source_Code_Pro
 
-echo "--------------------------------"
-echo "Installing Homebrew"
-echo "--------------------------------"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
-eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo "--------------------------------"
+  echo "Installing Homebrew"
+  echo "--------------------------------"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 
-echo "--------------------------------"
-echo "Installing Homebrew packages"
-echo "--------------------------------"
-brew install \
-  asdf \
-  awscli \
-  checkov \
-  common-fate/granted/granted \
-  coreutils \
-  git-secret \
-  gpg \
-  jq \
-  keychain \
-  parallels \
-  spacelift-io/spacelift/spacectl \
-  starship \
-  terraform-docs \
-  tflint \
-  tree
+  echo "--------------------------------"
+  echo "Installing Homebrew packages"
+  echo "--------------------------------"
+  brew install \
+    asdf \
+    awscli \
+    checkov \
+    common-fate/granted/granted \
+    coreutils \
+    git-secret \
+    gpg \
+    jq \
+    keychain \
+    session-manager-plugin \
+    spacelift-io/spacelift/spacectl \
+    starship \
+    terraform-docs \
+    tflint \
+    tree
 
-echo "--------------------------------"
-echo "Installing Oh My Zsh"
-echo "--------------------------------"
-if [[ -d ~/.oh-my-zsh ]]; then
-  echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
-else
-  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+  echo "--------------------------------"
+  echo "Installing Oh My Zsh"
+  echo "--------------------------------"
+  if [[ -d ~/.oh-my-zsh ]]; then
+    echo "WARN: Oh My Zsh directory exists at ~/.oh-my-zsh, skipping..."
+  else
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+  fi
+
+  echo "--------------------------------"
+  echo "Installing asdf plugins"
+  echo "--------------------------------"
+  asdf plugin add gcloud \
+    && asdf install gcloud latest \
+    && asdf global gcloud latest
+  asdf plugin add golang \
+    && asdf install golang latest \
+    && asdf global golang latest
+  asdf plugin add nodejs \
+    && asdf install nodejs latest \
+    && asdf global nodejs latest
+  asdf plugin add opentofu \
+    && asdf install opentofu latest \
+    && asdf global opentofu latest
+  asdf plugin add pulumi \
+    && asdf install pulumi latest \
+    && asdf global pulumi latest
+  asdf plugin add terraform \
+    && asdf install terraform latest \
+    && asdf global terraform latest
+
+  echo "--------------------------------"
+  echo "Installing warp"
+  echo "--------------------------------"
+  brew install --cask warp
+
+  echo "--------------------------------"
+  echo "Copying MacOS-specific Files"
+  echo "--------------------------------"
+  mkdir -p ~/.aws && cp aws/config ~/.aws/config
+  cp zsh/.zshrc ~/.zshrc
+  mkdir -p ~/.warp/themes/ && cp warp/monokai_pro.yaml ~/.warp/themes/
+  mkdir -p ~/.config/ && cp zsh/starship.toml ~/.config/
+
+  # Copy VSCode settings if it's installed
+  if [[ -d "~/Library/Application Support/Code/User" ]]; then
+    cp vscode/settings.json "~/Library/Application Support/Code/User/"
+  fi
+fi
+
+if [[ `lsb_release -i | awk -F"\t" '{print $2}'` == "Ubuntu" ]]; then
+  echo "--------------------------------"
+  echo "Updating system"
+  echo "--------------------------------"
+  sudo apt-get update && sudo apt-get upgrade -y
+
+  echo "--------------------------------"
+  echo "Installing Tailscale"
+  echo "--------------------------------"
+  codename=`lsb_release -c | awk -F"\t" '{print $2}'`
+  curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/$codename.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+  curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/$codename.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+  sudo apt-get update
+  sudo apt-get install tailscale
+  sudo tailscale up
+  sudo tailscale set --advertise-exit-node --auto-update --update-check --webclient
+
+  echo "--------------------------------"
+  echo "Setting basic bashrc"
+  echo "--------------------------------"
+  echo 'export TERM=xterm-256color' >> ~/.bashrc
+  echo 'export VISUAL=vim' >> ~/.bashrc
+  echo 'export EDITOR=$VISUAL' >> ~/.bashrc
+
+  echo 'alias c="clear"' >> ~/.bashrc
+  echo 'alias home="cd ~ && clear"' >> ~/.bashrc
+  echo 'alias rl="source ~/.bashrc && clear"' >> ~/.bashrc
+  echo 'alias ud="sudo apt-get update && sudo apt-get upgrade -y"' >> ~/.bashrc
 fi
 
 echo "--------------------------------"
@@ -60,47 +132,11 @@ else
 fi
 
 echo "--------------------------------"
-echo "Installing asdf plugins"
-echo "--------------------------------"
-asdf plugin add gcloud \
-  && asdf install gcloud latest \
-  && asdf global gcloud latest
-asdf plugin add golang \
-  && asdf install golang latest \
-  && asdf global golang latest
-asdf plugin add nodejs \
-  && asdf install nodejs latest \
-  && asdf global nodejs latest
-asdf plugin add opentofu \
-  && asdf install opentofu latest \
-  && asdf global opentofu latest
-asdf plugin add pulumi \
-  && asdf install pulumi latest \
-  && asdf global pulumi latest
-asdf plugin add terraform \
-  && asdf install terraform latest \
-  && asdf global terraform latest
-
-echo "--------------------------------"
-echo "Installing warp"
-echo "--------------------------------"
-brew install --cask warp
-
-echo "--------------------------------"
 echo "Copying Files"
 echo "--------------------------------"
 cp git/.gitconfig* ~
-mkdir -p ~/.aws && cp aws/config ~/.aws/config
 cp vim/.vimrc ~/.vimrc
 cp vim/colors/monokai_pro/monokai_pro.vim ~/.vim/colors
-cp zsh/.zshrc ~/.zshrc
-mkdir -p ~/.warp/themes/ && cp warp/monokai_pro.yaml ~/.warp/themes/
-mkdir -p ~/.config/ && cp zsh/starship.toml ~/.config/
-
-# Copy VSCode settings if it's installed
-if [[ -d "~/Library/Application Support/Code/User" ]]; then
-  cp vscode/settings.json "~/Library/Application Support/Code/User/"
-fi
 
 echo "--------------------------------"
 echo "System has been bootstrapped successfully, Happy Hacking!"
