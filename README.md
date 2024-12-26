@@ -31,6 +31,7 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 # Installation
 
 To install everything listed below, clone this repo and run `script/bootstrap`.
+_On Ubuntu, only a very minimal set of configuration takes place!_
 
 ## Packages/Plugins
 
@@ -40,8 +41,9 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - AWS
 
-  - [aws cli](https://aws.amazon.com/cli/)
+  - [awscli](https://aws.amazon.com/cli/)
   - [granted](https://docs.commonfate.io/granted/introduction)
+  - [session-manager-plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
 
 - [checkov](https://www.checkov.io)
 
@@ -53,13 +55,11 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [jq](https://jqlang.github.io/jq/)
 
-- [keychain](https://packages.ubuntu.com/bionic/keychain)
+- [keychain](https://www.funtoo.org/Funtoo:Keychain)
 
 - [node](https://nodejs.org)
 
 - [opentofu](https://opentofu.org)
-
-- [parallels](https://parallels.com)
 
 - [pulumi](https://www.pulumi.com)
 
@@ -108,4 +108,4 @@ git add ae/**/.*.secret
 
 # Compatibilty
 
-- `script/bootstrap` has been tested on Mac.
+- `script/bootstrap` has been tested on Mac and Ubuntu 24.04.
