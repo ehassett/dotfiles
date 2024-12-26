@@ -113,9 +113,9 @@ if [[ `lsb_release -i | awk -F"\t" '{print $2}'` == "Ubuntu" ]]; then
   echo 'export EDITOR=$VISUAL' >> ~/.bashrc
 
   echo 'alias c="clear"' >> ~/.bashrc
-  echo 'alias home="cd ~ && clear"'
-  echo 'alias rl="source ~/.bashrc && clear"'
-  echo 'alias ud="sudo apt-get update && sudo apt-get upgrade -y"'
+  echo 'alias home="cd ~ && clear"' >> ~/.bashrc
+  echo 'alias rl="source ~/.bashrc && clear"' >> ~/.bashrc
+  echo 'alias ud="sudo apt-get update && sudo apt-get upgrade -y"' >> ~/.bashrc
 fi
 
 echo "--------------------------------"
