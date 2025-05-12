@@ -1,7 +1,4 @@
 {
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
   "[terraform-vars]": {
     "editor.defaultFormatter": "hashicorp.terraform"
   },

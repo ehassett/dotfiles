@@ -1,6 +1,6 @@
 # dotfiles
 
-This repo contains a collection of my dotfiles. Suggestions and contributions are welcome!
+This repo contains a collection of my dotfiles.
 
 | basic                 | vim                 |
 | --------------------- | ------------------- |
@@ -14,6 +14,7 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 
 - [dotfiles](#dotfiles)
 - [Contents](#contents)
+- [Contributing](#contributing)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
   - [Packages/Plugins](#packagesplugins)
@@ -21,6 +22,11 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
   - [`ae`](#ae)
     - [pre-commit](#pre-commit)
 - [Compatibilty](#compatibilty)
+
+# Contributing
+
+- Follow [conventional commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) for commits _and_ PR titles.
+- Follow [GitHub Flow](https://githubflow.github.io) for branching strategy and PR process.
 
 # Prerequisites
 
@@ -31,7 +37,9 @@ This repo contains a collection of my dotfiles. Suggestions and contributions ar
 # Installation
 
 To install everything listed below, clone this repo and run `script/bootstrap`.
-_On Ubuntu, only a very minimal set of configuration takes place!_
+
+> [!NOTE]
+> On Ubuntu, only a very minimal set of configuration takes place.
 
 ## Packages/Plugins
 
@@ -49,6 +57,8 @@ _On Ubuntu, only a very minimal set of configuration takes place!_
 
 - [gcloud](https://cloud.google.com/cli)
 
+- [gh](https://cli.github.com)
+
 - [git-secret](https://sobolevn.me/git-secret/)
 
 - [go](https://golang.org/)
@@ -60,6 +70,8 @@ _On Ubuntu, only a very minimal set of configuration takes place!_
 - [node](https://nodejs.org)
 
 - [opentofu](https://opentofu.org)
+
+- [prettier](https://prettier.io)
 
 - [pulumi](https://www.pulumi.com)
 

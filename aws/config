@@ -1,8 +1,9 @@
 # Personal Backblaze B2 Profile
 [profile b2]
-services              = b2
-region                = us-west-2 # Set for assume to not error
-credential_process    = granted credential-process --profile=b2
+services                     = b2
+region                       = us-west-2 # Set for assume to not error
+credential_process           = granted credential-process --profile=b2
+request_checksum_calculation = when_required
 
 [services b2]
 s3 = 

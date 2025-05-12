@@ -23,7 +23,7 @@ export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin:/usr/local/bi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Load Keychain
-eval "$(keychain --agents ssh --attempts 3 --eval id_rsa)"
+eval "$(keychain --eval id_rsa)"
 
 # Load Starship
 eval "$(starship init zsh)"

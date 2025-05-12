@@ -27,6 +27,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     checkov \
     common-fate/granted/granted \
     coreutils \
+    gh \
     git-secret \
     gpg \
     jq \
@@ -52,27 +53,32 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "--------------------------------"
   asdf plugin add gcloud \
     && asdf install gcloud latest \
-    && asdf global gcloud latest
+    && asdf set -u gcloud latest
   asdf plugin add golang \
     && asdf install golang latest \
-    && asdf global golang latest
+    && asdf set -u golang latest
   asdf plugin add nodejs \
     && asdf install nodejs latest \
-    && asdf global nodejs latest
+    && asdf set -u nodejs latest
   asdf plugin add opentofu \
     && asdf install opentofu latest \
-    && asdf global opentofu latest
+    && asdf set -u opentofu latest
   asdf plugin add pulumi \
     && asdf install pulumi latest \
-    && asdf global pulumi latest
+    && asdf set -u pulumi latest
   asdf plugin add terraform \
     && asdf install terraform latest \
-    && asdf global terraform latest
+    && asdf set -u terraform latest
 
   echo "--------------------------------"
   echo "Installing warp"
   echo "--------------------------------"
   brew install --cask warp
+
+  echo "--------------------------------"
+  echo "Installing prettier"
+  echo "--------------------------------"
+  npm install -g prettier
 
   echo "--------------------------------"
   echo "Copying MacOS-specific Files"
@@ -82,9 +88,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   mkdir -p ~/.warp/themes/ && cp warp/monokai_pro.yaml ~/.warp/themes/
   mkdir -p ~/.config/ && cp zsh/starship.toml ~/.config/
 
-  # Copy VSCode settings if it's installed
+  # Set up VSCode settings if it's installed
   if [[ -d "~/Library/Application Support/Code/User" ]]; then
     cp vscode/settings.json "~/Library/Application Support/Code/User/"
+    prettierPath="$(npm root -g)/prettier"
+    cat settings.json | jq ". += {\"prettier.prettierPath\": \"$prettierPath\"}" > "~/Library/Application Support/Code/User/settings.json"
   fi
 fi
 
