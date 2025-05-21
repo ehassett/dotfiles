@@ -22,6 +22,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Installing Homebrew packages"
   echo "--------------------------------"
   brew install \
+    act \
     asdf \
     awscli \
     checkov \

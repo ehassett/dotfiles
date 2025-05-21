@@ -45,6 +45,8 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [Homebrew](https://brew.sh)
 
+- [act](https://nektosact.com)
+
 - [asdf](https://asdf-vm.com)
 
 - AWS
