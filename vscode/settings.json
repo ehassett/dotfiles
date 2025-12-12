@@ -1,11 +1,5 @@
 {
-  "[terraform-vars]": {
-    "editor.defaultFormatter": "hashicorp.terraform"
-  },
-  "[terraform]": {
-    "editor.defaultFormatter": "hashicorp.terraform"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
   "editor.fontFamily": "'Source Code Pro', 'Courier New', monospace",
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
@@ -24,13 +18,18 @@
     "plaintext": false,
     "scminput": false
   },
+  "github.copilot.nextEditSuggestions.enabled": true,
   "go.toolsManagement.autoUpdate": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "mdb.mcp.server": "autoStartDisabled",
+  "prettier.resolveGlobalModules": true,
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "terraform.languageServer.enable": true,
   "window.restoreWindows": "preserve",
   "workbench.colorTheme": "Monokai Pro",
   "workbench.iconTheme": "Monokai Pro Icons",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "[opentofu]": {
+    "editor.defaultFormatter": "opentofu.vscode-opentofu"
+  }
 }

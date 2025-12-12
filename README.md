@@ -57,29 +57,27 @@ To install everything listed below, clone this repo and run `script/bootstrap`.
 
 - [checkov](https://www.checkov.io)
 
-- [gcloud](https://cloud.google.com/cli)
+- [Copilot CLI](https://github.com/features/copilot/cli)
 
 - [gh](https://cli.github.com)
 
 - [git-secret](https://sobolevn.me/git-secret/)
 
-- [go](https://golang.org/)
+- [go](https://golang.org/) (latest version via `asdf`)
 
 - [jq](https://jqlang.github.io/jq/)
 
 - [keychain](https://www.funtoo.org/Funtoo:Keychain)
 
-- [node](https://nodejs.org)
+- [node](https://nodejs.org) (latest version via `asdf`)
 
-- [opentofu](https://opentofu.org)
+- [opentofu](https://opentofu.org) (latest version via `asdf`)
 
 - [prettier](https://prettier.io)
 
-- [pulumi](https://www.pulumi.com)
-
 - [spacectl](https://docs.spacelift.io/concepts/spacectl)
 
-- [terraform](https://terraform.io)
+- [terraform](https://terraform.io) (v1.5 via `asdf`)
 
   - [terraform-docs](https://terraform-docs.io)
   - [tflint](https://github.com/terraform-linters/tflint)

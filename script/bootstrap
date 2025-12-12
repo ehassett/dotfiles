@@ -27,6 +27,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     awscli \
     checkov \
     common-fate/granted/granted \
+    copilot-cli \
     coreutils \
     gh \
     git-secret \
@@ -52,9 +53,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "--------------------------------"
   echo "Installing asdf plugins"
   echo "--------------------------------"
-  asdf plugin add gcloud \
-    && asdf install gcloud latest \
-    && asdf set -u gcloud latest
   asdf plugin add golang \
     && asdf install golang latest \
     && asdf set -u golang latest
@@ -64,12 +62,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   asdf plugin add opentofu \
     && asdf install opentofu latest \
     && asdf set -u opentofu latest
-  asdf plugin add pulumi \
-    && asdf install pulumi latest \
-    && asdf set -u pulumi latest
   asdf plugin add terraform \
-    && asdf install terraform latest \
-    && asdf set -u terraform latest
+    && asdf install terraform latest:1.5 \
+    && asdf set -u terraform latest:1.5
 
   echo "--------------------------------"
   echo "Installing warp"
@@ -77,7 +72,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew install --cask warp
 
   echo "--------------------------------"
-  echo "Installing prettier"
+  echo "Installing global node packages"
   echo "--------------------------------"
   npm install -g prettier
 
@@ -92,8 +87,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # Set up VSCode settings if it's installed
   if [[ -d "~/Library/Application Support/Code/User" ]]; then
     cp vscode/settings.json "~/Library/Application Support/Code/User/"
-    prettierPath="$(npm root -g)/prettier"
-    cat settings.json | jq ". += {\"prettier.prettierPath\": \"$prettierPath\"}" > "~/Library/Application Support/Code/User/settings.json"
   fi
 fi
 
