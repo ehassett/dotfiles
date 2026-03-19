@@ -1,0 +1,15 @@
+{{- $hosttype := get . "hosttype" | default "server" -}}
+{{- if not (and (eq .chezmoi.os "linux") (eq $hosttype "server")) -}}
+[source_code_pro]
+    type = "archive"
+    url = "https://github.com/adobe-fonts/source-code-pro/archive/master.tar.gz"
+    exact = false
+    stripComponents = 2
+    refreshPeriod = "168h"
+    include = ["**/*.ttf"]
+{{- $fontsPath := "Library/Fonts" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $fontsPath = ".local/share/fonts" -}}
+{{ end }}
+    targetPath = {{ $fontsPath | quote }}
+{{- end }}

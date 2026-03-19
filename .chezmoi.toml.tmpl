@@ -1,0 +1,18 @@
+{{- $choices := list "workstation" "server" -}}
+{{- $data := get .chezmoi.config "data" | default dict -}}
+{{- $hosttype := promptChoiceOnce $data "hosttype" "What type of machine are you on" $choices -}}
+{{- $name := promptStringOnce $data "name" "What is your full name" -}}
+{{- $email := promptStringOnce $data "email" "What is your primary email" -}}
+{{- $workEmail := "" -}}
+{{- $company := "" -}}
+{{- if eq $hosttype "workstation" -}}
+{{- $workEmail = promptStringOnce $data "work_email" "What is your work email" -}}
+{{- $company = promptStringOnce $data "company" "What is your company name (full)" -}}
+{{- end -}}
+
+[data]
+  hosttype = {{ $hosttype | quote }}
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+  work_email = {{ $workEmail | quote }}
+  company = {{ $company | quote }}

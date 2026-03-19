@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+{{- $hosttype := get . "hosttype" | default "server" -}}
+{{- $company := get . "company" | default "" -}}
+{{- if eq $hosttype "workstation" }}
+echo "Ensuring project directories exist..."
+mkdir -p "$HOME/Developer"{{ if ne $company "" }} "$HOME/{{ $company }}"{{ end }}
+{{- end }}
+
+echo "Updating Vim plugins..."
+if command -v vim >/dev/null 2>&1; then
+	vim +PlugUpdate +qa
+	vim +PlugClean! +qa
+else
+	echo "Skipping Vim plugin update (vim not found)."
+fi
+
+echo "Updating Zsh plugins..."
+{{ if eq .chezmoi.os "darwin" -}}
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+{{- else if eq .chezmoi.os "linux" -}}
+ZDOTDIR=$HOME/.config/zsh
+source "$ZDOTDIR/.antidote/antidote.zsh"
+{{- end }}
+antidote update
