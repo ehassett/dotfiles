@@ -1,5 +1,3 @@
-{{- $hosttype := get . "hosttype" | default "server" -}}
-{{- if eq $hosttype "workstation" -}}
 {
   "chat.viewSessions.orientation": "stacked",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -45,4 +43,3 @@
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   }
 }
-{{ end -}}

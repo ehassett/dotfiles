@@ -1,6 +1,5 @@
 {{- $name := get . "name" | default "" -}}
 {{- $email := get . "email" | default "" -}}
-{{- $hosttype := get . "hosttype" | default "server" -}}
 {{- $company := get . "company" | default "" -}}
 # Default settings
 [user]
@@ -13,7 +12,7 @@
 [push]
 	autoSetupRemote = true
 
-{{- if and (eq $hosttype "workstation") (ne $company "") }}
+{{- if and (eq .chezmoi.os "darwin") (ne $company "") }}
 # Load based on directory
 [includeIf "gitdir:~/{{ $company }}/**"]
     path = .gitconfig-work

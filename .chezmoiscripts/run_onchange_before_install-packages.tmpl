@@ -42,13 +42,14 @@ sudo apt install -y \
 if ! command -v starship >/dev/null 2>&1; then
   echo "Installing starship..."
   curl -sS https://starship.rs/install.sh | sh
-else
+fi
 
-echo "Installing antidote..."
 export ZDOTDIR=$HOME/.config/zsh
 if [ -d "$ZDOTDIR/.antidote" ]; then
+  echo "Updating antidote..."
   git -C "$ZDOTDIR/.antidote" pull --ff-only
 else
+  echo "Installing antidote..."
   git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR/.antidote"
 fi
 {{ end -}}

@@ -1,10 +1,11 @@
-# load antidote
-{{- $antidotePath := "/opt/homebrew/opt/antidote/share/antidote" -}}
-{{- $hosttype := get . "hosttype" | default "server" -}}
 {{- $company := get . "company" | default "" -}}
+
+{{- $antidotePath := "/opt/homebrew/opt/antidote/share/antidote" -}}
 {{- if eq .chezmoi.os "linux" -}}
 {{- $antidotePath = "$ZDOTDIR/.antidote" -}}
-{{ end }}
+{{- end -}}
+
+# load antidote
 source {{ $antidotePath }}/antidote.zsh
 antidote load
 
@@ -16,16 +17,18 @@ bindkey '^[[B' history-substring-search-down
 export TERM=xterm-256color
 export VISUAL=vim
 export EDITOR=$VISUAL
-{{- if eq $hosttype "workstation" }}
+
+{{- if eq .chezmoi.os "darwin" }}
 export DEVDIR="$HOME/Developer"
+
 {{- if ne $company "" }}
 export COMPDIR="$HOME/{{ $company }}"
 {{- end }}
 export GOBIN="$HOME/.local/bin"
 export PATH="$PATH:$HOME/.asdf/shims:$GOBIN{{ if eq .chezmoi.os "darwin" }}:/opt/homebrew/bin:/opt/homebrew/sbin{{ end }}"
 {{- end }}
-{{- if eq .chezmoi.os "darwin" }}
 
+{{- if eq .chezmoi.os "darwin" }}
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -36,7 +39,7 @@ source "$HOME/.config/iterm2/iterm2.zsh"
 # load keychain
 eval "$(keychain --eval id_rsa)"
 
-{{- if eq $hosttype "workstation" }}
+{{- if eq .chezmoi.os "darwin" }}
 
 # set granted's assume alias
 alias assume="source assume"
@@ -53,7 +56,7 @@ alias ud="sudo apt-get update && sudo apt-get upgrade -y"
 {{- end }}
 alias commit='git commit --date="$(date -u)"'
 
-{{- if eq $hosttype "workstation" }}
+{{- if eq .chezmoi.os "darwin" }}
 
 # projects function
 ## Usage: `p <project>` for all projects or `p p|w <project>` for (personal|work) projects.

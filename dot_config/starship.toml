@@ -15,6 +15,20 @@ $aws\
 $line_break\
 $character"""
 
+[username]
+format = '[$user]($style)'
+style_root = "bold red"
+style_user = "bold blue"
+
+[hostname]
+format = '[@$hostname]($style)'
+style = "bold dimmed blue"
+ssh_symbol = ""
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+read_only = "[ro]"
+
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
 

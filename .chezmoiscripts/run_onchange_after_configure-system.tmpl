@@ -1,8 +1,8 @@
+{{- $company := get . "company" | default "" -}}
+
 #!/bin/zsh
 
-{{- $hosttype := get . "hosttype" | default "server" -}}
-{{- $company := get . "company" | default "" -}}
-{{- if eq $hosttype "workstation" }}
+{{- if eq .chezmoi.os "darwin" }}
 echo "Ensuring project directories exist..."
 mkdir -p "$HOME/Developer"{{ if ne $company "" }} "$HOME/{{ $company }}"{{ end }}
 {{- end }}
