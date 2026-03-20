@@ -1,7 +1,7 @@
 {
   "chat.viewSessions.orientation": "stacked",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "'Source Code Pro', 'Courier New', monospace",
+  "editor.fontFamily": "'SauceCodePro Nerd Font', 'Courier New', monospace",
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
     "strings": true
