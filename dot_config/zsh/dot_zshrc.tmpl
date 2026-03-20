@@ -41,10 +41,8 @@ export DEVDIR="$HOME/Developer"
 export COMPDIR="$HOME/{{ $company }}"
 {{- end }}
 export GOBIN="$HOME/.local/bin"
-export PATH="$PATH:$HOME/.asdf/shims:$GOBIN{{ if eq .chezmoi.os "darwin" }}:/opt/homebrew/bin:/opt/homebrew/sbin{{ end }}{{ if eq .chezmoi.os "linux" }}:$HOME/.local/bin{{ end }}"
-{{- end }}
+export PATH="$PATH:$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin"
 
-{{- if eq .chezmoi.os "darwin" }}
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -52,11 +50,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 source "$HOME/.config/iterm2/iterm2.zsh"
 {{- end }}
 
+{{- if eq .chezmoi.os "linux" }}
+export PATH="$PATH:$HOME/.local/bin"
+{{ end }}
+
 # load keychain
 eval "$(keychain --eval id_rsa)"
 
 {{- if eq .chezmoi.os "darwin" }}
-
 # set granted's assume alias
 alias assume="source assume"
 {{- end }}
