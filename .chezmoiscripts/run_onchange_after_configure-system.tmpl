@@ -14,12 +14,3 @@ if command -v vim >/dev/null 2>&1; then
 else
 	echo "Skipping Vim plugin update (vim not found)."
 fi
-
-echo "Updating Zsh plugins..."
-{{ if eq .chezmoi.os "darwin" -}}
-source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-{{- else if eq .chezmoi.os "linux" -}}
-ZDOTDIR=$HOME/.config/zsh
-source "$ZDOTDIR/.antidote/antidote.zsh"
-{{- end }}
-antidote update
