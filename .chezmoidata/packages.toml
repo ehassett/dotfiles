@@ -17,8 +17,8 @@
   ]
   casks = [
     "copilot-cli",
-    "visual-studio-code",
-    "wave"
+    "iterm2",
+    "visual-studio-code"
   ]
   asdf = [
     { name = "golang", version = "latest" },

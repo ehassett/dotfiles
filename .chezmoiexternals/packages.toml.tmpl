@@ -1,0 +1,10 @@
+[".vim/autoload/plug.vim"]
+  type = "file"
+  url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  refreshPeriod = "168h"
+{{ if eq .chezmoi.os "darwin" -}}
+[".config/iterm2/iterm2.zsh"]
+  type = "file"
+  url = "https://iterm2.com/shell_integration/zsh"
+  refreshPeriod = "168h"
+{{ end }}

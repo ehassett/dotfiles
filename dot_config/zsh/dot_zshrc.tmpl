@@ -28,6 +28,9 @@ export PATH="$PATH:$HOME/.asdf/shims:$GOBIN{{ if eq .chezmoi.os "darwin" }}:/opt
 
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# load iterm2 shell integration
+source "$HOME/.config/iterm2/iterm2.zsh"
 {{- end }}
 
 # load keychain

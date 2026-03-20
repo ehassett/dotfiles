@@ -1,8 +1,0 @@
-{
-  "autoupdate:channel": "latest",
-  "telemetry:enabled": false,
-  "app:hideaibutton": true,
-  "term:fontfamily": "Source Code Pro",
-  "term:theme": "monokai_pro_spectrum",
-  "window:dimensions": "1280x720"
-}
