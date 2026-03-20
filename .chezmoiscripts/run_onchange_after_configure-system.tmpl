@@ -14,3 +14,11 @@ if command -v vim >/dev/null 2>&1; then
 else
 	echo "Skipping Vim plugin update (vim not found)."
 fi
+
+{{ if ne .chezmoi.os "darwin" -}}
+if [ "$SHELL" != "$(which zsh)" ]; then
+	echo "Changing shell for $USER to zsh..."
+	chsh -s "$(which zsh)"
+	echo "Please logout and back in for all changes to take effect!"
+fi
+{{- end }}

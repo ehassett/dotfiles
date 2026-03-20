@@ -1,4 +1,5 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- $hosttype := get . "hosttype" | default "server" -}}
+{{- if eq $hosttype "workstation" -}}
 {{- $company := get . "company" | default "" -}}
 {
   "folders": [
