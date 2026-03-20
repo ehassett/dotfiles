@@ -1,9 +1,17 @@
 {{- $company := get . "company" | default "" -}}
 
+# IMPORTANT: export PATH before loading any tools that may rely on it
+{{- if eq .chezmoi.os "darwin" }}
+export GOBIN="$HOME/.local/bin"
+export PATH="$PATH:$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin"
+{{- else if eq .chezmoi.os "linux" }}
+export PATH="$PATH:$HOME/.local/bin"
+{{- end }}
+
 {{- $antidotePath := "/opt/homebrew/opt/antidote/share/antidote" -}}
 {{- if eq .chezmoi.os "linux" -}}
 {{- $antidotePath = "$ZDOTDIR/.antidote" -}}
-{{- end -}}
+{{- end }}
 
 # load antidote
 source {{ $antidotePath }}/antidote.zsh
@@ -40,8 +48,6 @@ export DEVDIR="$HOME/Developer"
 {{- if ne $company "" }}
 export COMPDIR="$HOME/{{ $company }}"
 {{- end }}
-export GOBIN="$HOME/.local/bin"
-export PATH="$PATH:$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin"
 
 # load homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -49,10 +55,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # load iterm2 shell integration
 source "$HOME/.config/iterm2/iterm2.zsh"
 {{- end }}
-
-{{- if eq .chezmoi.os "linux" }}
-export PATH="$PATH:$HOME/.local/bin"
-{{ end }}
 
 # load keychain
 eval "$(keychain --eval id_rsa)"
