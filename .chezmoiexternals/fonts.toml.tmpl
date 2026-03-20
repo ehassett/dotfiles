@@ -1,5 +1,5 @@
 {{- $hosttype := get . "hosttype" | default "server" -}}
-{{- if not (and (eq .chezmoi.os "linux") (eq $hosttype "server")) -}}
+{{- if or (eq .chezmoi.os "darwin") (eq $hosttype "workstation") -}}
 [source_code_pro]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.zip"

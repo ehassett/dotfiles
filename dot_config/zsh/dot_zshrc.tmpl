@@ -62,19 +62,37 @@ compctl -K _p p
 _p() {
   local words completions
   read -cA words
+  local has_work_scope=0
+
+  if [[ -n "$COMPDIR" ]]; then
+    has_work_scope=1
+  fi
 
   if [[ "${words[2]}" == "personal" || "${words[2]}" == "p" ]]; then
     completions="$(ls $DEVDIR/ 2>/dev/null)"
   elif [[ "${words[2]}" == "work" || "${words[2]}" == "w" ]]; then
-    completions="$(ls $COMPDIR/ 2>/dev/null)"
+    if [[ $has_work_scope -eq 1 ]]; then
+      completions="$(ls $COMPDIR/ 2>/dev/null)"
+    else
+      completions=""
+    fi
   else
-    completions="$(
-      {
-        echo $'p\nw'
-        ls $DEVDIR/ 2>/dev/null
-        ls $COMPDIR/ 2>/dev/null
-      } | sort -u
-    )"
+    if [[ $has_work_scope -eq 1 ]]; then
+      completions="$(
+        {
+          echo $'p\nw'
+          ls $DEVDIR/ 2>/dev/null
+          ls $COMPDIR/ 2>/dev/null
+        } | sort -u
+      )"
+    else
+      completions="$(
+        {
+          echo $'p'
+          ls $DEVDIR/ 2>/dev/null
+        } | sort -u
+      )"
+    fi
   fi
 
   reply=("${(ps:\n:)completions}")
@@ -92,12 +110,12 @@ function p {
   if [[ -z "$project" ]]; then
     project="$scope"
 
-    if [[ -d "$DEVDIR/$project" && -d "$COMPDIR/$project" ]]; then
+    if [[ -n "$COMPDIR" && -d "$DEVDIR/$project" && -d "$COMPDIR/$project" ]]; then
       echo "ERROR: project exists in both personal and work. Use: p p|w $project"
       return 1
     elif [[ -d "$DEVDIR/$project" ]]; then
       cd "$DEVDIR/$project"
-    elif [[ -d "$COMPDIR/$project" ]]; then
+    elif [[ -n "$COMPDIR" && -d "$COMPDIR/$project" ]]; then
       cd "$COMPDIR/$project"
     else
       echo "ERROR: project '$project' not found in personal or work directories"
@@ -111,7 +129,10 @@ function p {
       return 1
     fi
   elif [[ "$scope" == "work" || "$scope" == "w" ]]; then
-    if [[ -d "$COMPDIR/$project" ]]; then
+    if [[ -z "$COMPDIR" ]]; then
+      echo "ERROR: work scope is not configured"
+      return 1
+    elif [[ -d "$COMPDIR/$project" ]]; then
       cd "$COMPDIR/$project"
     else
       echo "ERROR: $COMPDIR/$project does not exist"
