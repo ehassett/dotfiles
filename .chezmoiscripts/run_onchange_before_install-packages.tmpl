@@ -34,6 +34,8 @@ echo "Installing global npm packages..."
 npm install -g {{ range .packages.darwin.npm -}}{{ . | quote }} {{ end }}
 
 {{- else if eq .chezmoi.os "linux" -}}
+mkdir -p "$HOME/.local/bin"
+
 echo "Installing apt packages..."
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install -y \

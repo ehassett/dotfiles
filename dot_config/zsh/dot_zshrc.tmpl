@@ -41,7 +41,7 @@ export DEVDIR="$HOME/Developer"
 export COMPDIR="$HOME/{{ $company }}"
 {{- end }}
 export GOBIN="$HOME/.local/bin"
-export PATH="$PATH:$HOME/.asdf/shims:$GOBIN{{ if eq .chezmoi.os "darwin" }}:/opt/homebrew/bin:/opt/homebrew/sbin{{ end }}"
+export PATH="$PATH:$HOME/.asdf/shims:$GOBIN{{ if eq .chezmoi.os "darwin" }}:/opt/homebrew/bin:/opt/homebrew/sbin{{ end }}{{ if eq .chezmoi.os "linux" }}:$HOME/.local/bin{{ end }}"
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}

@@ -37,7 +37,6 @@ npm = ["prettier"]
 apt = [
   "ca-certificates",
   "coreutils",
-  "eza",
   "git",
   "jq",
   "keychain",
