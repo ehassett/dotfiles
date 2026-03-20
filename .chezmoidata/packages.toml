@@ -41,7 +41,6 @@ apt = [
   "git",
   "jq",
   "keychain",
-  "starship",
   "tcptraceroute",
   "zsh",
 ]
