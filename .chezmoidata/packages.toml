@@ -42,5 +42,6 @@ apt = [
   "jq",
   "keychain",
   "tcptraceroute",
+  "vim",
   "zsh",
 ]
