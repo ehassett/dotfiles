@@ -16,24 +16,26 @@ $line_break\
 $character"""
 
 [username]
-format = '[$user]($style)'
+format = '[$user]($style)@'
+show_always = false
 style_root = "bold red"
 style_user = "bold blue"
 
 [hostname]
-format = '[@$hostname]($style)'
-style = "bold dimmed blue"
+format = '[$hostname]($style):'
+ssh_only = true
+style = "bold blue"
 ssh_symbol = ""
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
+format = '[$path]($style)[$read_only]($read_only_style) '
 read_only = "[ro]"
 
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\]]($style)) '
 stashed = '≡'
 untracked = '?'
 modified = '!'
@@ -42,29 +44,20 @@ renamed = '»'
 deleted = '✘'
 
 [golang]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol($version)]($style)\] '
 symbol = 'go@'
 
 [nodejs]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol($version)]($style)\] '
 symbol = 'node@'
 
 [python]
-format = '\[[$symbol($version)]($style)\]'
+format = '\[[$symbol($version)]($style)\] '
 symbol = 'py@'
 
-[helm]
-format = '\[[$symbol($version)]($style)\]'
-symbol = 'helm@'
-
 [aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\] '
 symbol = 'aws: '
-
-[gcloud]
-format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
-symbol = 'gcp: '
-disabled = true
 
 [custom.iac]
 when = "(command -v tofu >/dev/null 2>&1 || command -v terraform >/dev/null 2>&1) && ([ -d .terraform ] || [ -f .terraform.lock.hcl ] || ls ./*.tf ./*.tfplan ./*.tfstate >/dev/null 2>&1)"
@@ -94,6 +87,6 @@ elif command -v terraform >/dev/null 2>&1; then
   echo "tf@$version"
 fi
 '''
-format = '\[[$output]($style)\]'
+format = '\[[$output]($style)\] '
 style = "bold green"
 shell = ["sh"]
