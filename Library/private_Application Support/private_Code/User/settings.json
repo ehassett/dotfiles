@@ -35,5 +35,11 @@
   },
   "[opentofu]": {
     "editor.defaultFormatter": "opentofu.vscode-opentofu"
+  },
+  "[gotmpl]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   }
 }
