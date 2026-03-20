@@ -21,11 +21,11 @@ format = '\[[$symbol$branch]($style)\]'
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 stashed = '≡'
-untracked =	'?'
+untracked = '?'
 modified = '!'
 staged = '+'
-renamed =	'»'
-deleted =	'✘'
+renamed = '»'
+deleted = '✘'
 
 [golang]
 format = '\[[$symbol($version)]($style)\]'
