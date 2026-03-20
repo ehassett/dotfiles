@@ -5,4 +5,5 @@ LICENSE
 Library/
 main.code-workspace
 .config/iterm2/
+.gitconfig-work
 {{ end }}
