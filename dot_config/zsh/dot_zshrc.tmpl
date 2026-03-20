@@ -10,8 +10,24 @@ source {{ $antidotePath }}/antidote.zsh
 antidote load
 
 # set zsh config
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt SHARE_HISTORY
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
+
+ZSH_COMPDUMP="$ZDOTDIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+autoload -Uz compinit
+compinit -d "$ZSH_COMPDUMP"
+
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+unset EZA_COLORS
+unset LS_COLORS
 
 # set environment variables
 export TERM=xterm-256color

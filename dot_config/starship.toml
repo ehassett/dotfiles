@@ -19,12 +19,12 @@ $character"""
 format = '[$user]($style)@'
 show_always = false
 style_root = "bold red"
-style_user = "bold blue"
+style_user = "bold green"
 
 [hostname]
 format = '[$hostname]($style):'
 ssh_only = true
-style = "bold blue"
+style = "bold green"
 ssh_symbol = ""
 
 [directory]
