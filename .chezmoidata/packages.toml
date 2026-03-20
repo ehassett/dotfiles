@@ -18,6 +18,7 @@
   casks = [
     "copilot-cli",
     "iterm2",
+    "tailscale-app",
     "visual-studio-code"
   ]
   asdf = [
