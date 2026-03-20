@@ -1,0 +1,19 @@
+{{- $name := get . "name" | default "" -}}
+{{- $email := get . "email" | default "" -}}
+{{- $company := get . "company" | default "" -}}
+# Default settings
+[user]
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+{{- if and (eq .chezmoi.os "darwin") (ne $company "") }}
+# Load based on directory
+[includeIf "gitdir:~/{{ $company }}/**"]
+    path = .gitconfig-work
+{{- end }}

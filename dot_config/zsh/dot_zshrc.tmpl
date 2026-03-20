@@ -1,0 +1,172 @@
+{{- $company := get . "company" | default "" -}}
+
+# IMPORTANT: export PATH before loading any tools that may rely on it
+{{- if eq .chezmoi.os "darwin" }}
+export GOBIN="$HOME/.local/bin"
+export PATH="$PATH:$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin"
+{{- else if eq .chezmoi.os "linux" }}
+export PATH="$PATH:$HOME/.local/bin"
+{{- end }}
+
+{{- $antidotePath := "/opt/homebrew/opt/antidote/share/antidote" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $antidotePath = "$ZDOTDIR/.antidote" -}}
+{{- end }}
+
+# load antidote
+source {{ $antidotePath }}/antidote.zsh
+antidote load
+
+# set zsh config
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt SHARE_HISTORY
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
+
+ZSH_COMPDUMP="$ZDOTDIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+autoload -Uz compinit
+compinit -d "$ZSH_COMPDUMP"
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+unset EZA_COLORS
+unset LS_COLORS
+
+# set environment variables
+export TERM=xterm-256color
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+{{- if eq .chezmoi.os "darwin" }}
+export DEVDIR="$HOME/Developer"
+
+{{- if ne $company "" }}
+export COMPDIR="$HOME/{{ $company }}"
+{{- end }}
+
+# load homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# load iterm2 shell integration
+source "$HOME/.config/iterm2/iterm2.zsh"
+{{- end }}
+
+# load keychain
+eval "$(keychain --eval id_rsa)"
+
+{{- if eq .chezmoi.os "darwin" }}
+# set granted's assume alias
+alias assume="source assume"
+{{- end }}
+
+# set custom aliases
+alias c="clear"
+alias home="cd ~"
+alias rl="source $ZDOTDIR/.zshrc"
+{{- if eq .chezmoi.os "darwin" }}
+alias ud="brew upgrade"
+{{- else if eq .chezmoi.os "linux" }}
+alias ud="sudo apt-get update && sudo apt-get upgrade -y"
+{{- end }}
+alias commit='git commit --date="$(date -u)"'
+
+{{- if eq .chezmoi.os "darwin" }}
+
+# projects function
+## Usage: `p <project>` for all projects or `p p|w <project>` for (personal|work) projects.
+compctl -K _p p
+
+_p() {
+  local words completions
+  read -cA words
+  local has_work_scope=0
+
+  if [[ -n "$COMPDIR" ]]; then
+    has_work_scope=1
+  fi
+
+  if [[ "${words[2]}" == "personal" || "${words[2]}" == "p" ]]; then
+    completions="$(ls $DEVDIR/ 2>/dev/null)"
+  elif [[ "${words[2]}" == "work" || "${words[2]}" == "w" ]]; then
+    if [[ $has_work_scope -eq 1 ]]; then
+      completions="$(ls $COMPDIR/ 2>/dev/null)"
+    else
+      completions=""
+    fi
+  else
+    if [[ $has_work_scope -eq 1 ]]; then
+      completions="$(
+        {
+          echo $'p\nw'
+          ls $DEVDIR/ 2>/dev/null
+          ls $COMPDIR/ 2>/dev/null
+        } | sort -u
+      )"
+    else
+      completions="$(
+        {
+          echo $'p'
+          ls $DEVDIR/ 2>/dev/null
+        } | sort -u
+      )"
+    fi
+  fi
+
+  reply=("${(ps:\n:)completions}")
+}
+
+function p {
+  local scope="$1"
+  local project="$2"
+
+  if [[ -z "$scope" ]]; then
+    echo "Usage: p <project> OR p p|w <project>"
+    return 1
+  fi
+
+  if [[ -z "$project" ]]; then
+    project="$scope"
+
+    if [[ -n "$COMPDIR" && -d "$DEVDIR/$project" && -d "$COMPDIR/$project" ]]; then
+      echo "ERROR: project exists in both personal and work. Use: p p|w $project"
+      return 1
+    elif [[ -d "$DEVDIR/$project" ]]; then
+      cd "$DEVDIR/$project"
+    elif [[ -n "$COMPDIR" && -d "$COMPDIR/$project" ]]; then
+      cd "$COMPDIR/$project"
+    else
+      echo "ERROR: project '$project' not found in personal or work directories"
+      return 1
+    fi
+  elif [[ "$scope" == "personal" || "$scope" == "p" ]]; then
+    if [[ -d "$DEVDIR/$project" ]]; then
+      cd "$DEVDIR/$project"
+    else
+      echo "ERROR: $DEVDIR/$project does not exist"
+      return 1
+    fi
+  elif [[ "$scope" == "work" || "$scope" == "w" ]]; then
+    if [[ -z "$COMPDIR" ]]; then
+      echo "ERROR: work scope is not configured"
+      return 1
+    elif [[ -d "$COMPDIR/$project" ]]; then
+      cd "$COMPDIR/$project"
+    else
+      echo "ERROR: $COMPDIR/$project does not exist"
+      return 1
+    fi
+  else
+    echo "ERROR: unknown scope '$scope'. Use p|w"
+    return 1
+  fi
+
+  clear
+}
+{{ end }}
+# load starship
+eval "$(starship init zsh)"

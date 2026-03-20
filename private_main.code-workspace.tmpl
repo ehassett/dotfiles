@@ -1,0 +1,20 @@
+{{- $company := get . "company" | default "" -}}
+{
+  "folders": [
+	{
+		"name": "Developer",
+		"path": "Developer"
+	},
+	{{ if ne $company "" -}}
+	{
+		"name": "{{ $company }}",
+		"path": "{{ $company }}"
+	},
+	{{- end -}}
+	{
+		"name": "chezmoi",
+		"path": ".local/share/chezmoi"
+	}
+],
+  "settings": {}
+}

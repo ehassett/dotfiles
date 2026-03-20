@@ -1,0 +1,15 @@
+{{- $data := get .chezmoi.config "data" | default dict -}}
+{{- $name := promptStringOnce $data "name" "What is your full name" -}}
+{{- $email := promptStringOnce $data "email" "What is your primary email" -}}
+{{- $workEmail := "" -}}
+{{- $company := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $workEmail = promptStringOnce $data "work_email" "What is your work email" -}}
+{{- $company = promptStringOnce $data "company" "What is your company name (full)" -}}
+{{- end -}}
+
+[data]
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+  work_email = {{ $workEmail | quote }}
+  company = {{ $company | quote }}

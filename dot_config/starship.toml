@@ -1,0 +1,92 @@
+command_timeout = 1000
+
+format = """
+$username\
+$hostname\
+$localip\
+$directory\
+$git_branch\
+$git_status\
+$golang\
+$nodejs\
+$python\
+$custom\
+$aws\
+$line_break\
+$character"""
+
+[username]
+format = '[$user]($style)@'
+show_always = false
+style_root = "bold red"
+style_user = "bold green"
+
+[hostname]
+format = '[$hostname]($style):'
+ssh_only = true
+style = "bold green"
+ssh_symbol = ""
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style) '
+read_only = "[ro]"
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style)) '
+stashed = '≡'
+untracked = '?'
+modified = '!'
+staged = '+'
+renamed = '»'
+deleted = '✘'
+
+[golang]
+format = '\[[$symbol($version)]($style)\] '
+symbol = 'go@'
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\] '
+symbol = 'node@'
+
+[python]
+format = '\[[$symbol($version)]($style)\] '
+symbol = 'py@'
+
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\] '
+symbol = 'aws: '
+
+[custom.iac]
+when = "(command -v tofu >/dev/null 2>&1 || command -v terraform >/dev/null 2>&1) && ([ -d .terraform ] || [ -f .terraform.lock.hcl ] || ls ./*.tf ./*.tfplan ./*.tfstate >/dev/null 2>&1)"
+command = '''
+if [ -f .tool-versions ]; then
+  selected_entry=$(grep -E '^[[:space:]]*(opentofu|terraform)[[:space:]]+' .tool-versions | head -n1)
+  tool=$(printf '%s\n' "$selected_entry" | awk '{print $1}')
+  version=$(printf '%s\n' "$selected_entry" | awk '{print $2}')
+
+  case "$tool" in
+    opentofu)
+      echo "tofu@$version"
+      exit 0
+      ;;
+    terraform)
+      echo "tf@$version"
+      exit 0
+      ;;
+  esac
+fi
+
+if command -v tofu >/dev/null 2>&1; then
+  version=$(tofu version | head -n1 | sed -E 's/^OpenTofu v//')
+  echo "tofu@$version"
+elif command -v terraform >/dev/null 2>&1; then
+  version=$(terraform version | head -n1 | sed -E 's/^Terraform v//')
+  echo "tf@$version"
+fi
+'''
+format = '\[[$output]($style)\] '
+style = "bold green"
+shell = ["sh"]

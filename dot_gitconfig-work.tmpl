@@ -1,0 +1,5 @@
+{{- $name := get . "name" | default "" -}}
+{{- $workEmail := get . "work_email" | default "" -}}
+[user]
+  name = {{ $name | quote }}
+  email = {{ $workEmail | quote }}

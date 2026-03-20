@@ -1,0 +1,9 @@
+README.md
+LICENSE
+
+{{- if ne .chezmoi.os "darwin" }}
+Library/
+main.code-workspace
+.config/iterm2/
+.gitconfig-work
+{{ end }}

@@ -1,0 +1,24 @@
+{{- $company := get . "company" | default "" -}}
+
+#!/bin/zsh
+
+{{- if eq .chezmoi.os "darwin" }}
+echo "Ensuring project directories exist..."
+mkdir -p "$HOME/Developer"{{ if ne $company "" }} "$HOME/{{ $company }}"{{ end }}
+{{- end }}
+
+echo "Updating Vim plugins..."
+if command -v vim >/dev/null 2>&1; then
+	vim +PlugUpdate +qa
+	vim +PlugClean! +qa
+else
+	echo "Skipping Vim plugin update (vim not found)."
+fi
+
+{{ if ne .chezmoi.os "darwin" -}}
+if [ "$SHELL" != "$(which zsh)" ]; then
+	echo "Changing shell for $USER to zsh..."
+	chsh -s "$(which zsh)"
+	echo "Please logout and back in for all changes to take effect!"
+fi
+{{- end }}

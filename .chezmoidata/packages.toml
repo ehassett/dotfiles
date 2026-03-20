@@ -1,0 +1,46 @@
+[packages.darwin]
+brews = [
+  "act",
+  "antidote",
+  "asdf",
+  "awscli",
+  "bash",
+  "ca-certificates",
+  "chezmoi",
+  "coreutils",
+  "eza",
+  "granted",
+  "jq",
+  "keychain",
+  "starship",
+  "tailscale",
+  "tcptraceroute",
+]
+casks = [
+  "copilot-cli",
+  "hiddenbar",
+  "iterm2",
+  "maccy",
+  "postman",
+  "tailscale-app",
+  "visual-studio-code",
+]
+asdf = [
+  { name = "golang", version = "latest" },
+  { name = "nodejs", version = "latest" },
+  { name = "opentofu", version = "latest" },
+  { name = "terraform", version = "latest:1.5" },
+]
+npm = ["prettier"]
+
+[packages.linux]
+apt = [
+  "ca-certificates",
+  "coreutils",
+  "git",
+  "jq",
+  "keychain",
+  "tcptraceroute",
+  "vim",
+  "zsh",
+]
