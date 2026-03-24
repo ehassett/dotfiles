@@ -9,6 +9,7 @@ brews = [
   "chezmoi",
   "coreutils",
   "eza",
+  "gh",
   "granted",
   "jq",
   "keychain",
