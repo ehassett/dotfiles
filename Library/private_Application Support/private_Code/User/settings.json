@@ -4,12 +4,12 @@
   "editor.fontFamily": "'SauceCodePro Nerd Font', 'Courier New', monospace",
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
-    "strings": true
+    "strings": true,
   },
   "editor.tabSize": 2,
   "files.associations": {
     "*.css": "tailwindcss",
-    "*.scss": "tailwindcss"
+    "*.scss": "tailwindcss",
   },
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -17,7 +17,7 @@
     "*": true,
     "markdown": false,
     "plaintext": false,
-    "scminput": false
+    "scminput": false,
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "go.toolsManagement.autoUpdate": true,
@@ -31,15 +31,18 @@
   "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
   "workbench.startupEditor": "none",
   "[go]": {
-    "editor.defaultFormatter": "golang.go"
+    "editor.defaultFormatter": "golang.go",
   },
   "[opentofu]": {
-    "editor.defaultFormatter": "opentofu.vscode-opentofu"
+    "editor.defaultFormatter": "opentofu.vscode-opentofu",
   },
   "[gotmpl]": {
-    "editor.defaultFormatter": "golang.go"
+    "editor.defaultFormatter": "golang.go",
   },
   "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
-  }
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+  },
+  "chat.tools.urls.autoApprove": {
+    "https://registry.terraform.io": true,
+  },
 }
