@@ -45,4 +45,5 @@
   "chat.tools.urls.autoApprove": {
     "https://registry.terraform.io": true,
   },
+  "workbench.browser.openLocalhostLinks": false,
 }
