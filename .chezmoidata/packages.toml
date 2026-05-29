@@ -8,7 +8,6 @@ brews = [
   "ca-certificates",
   "chezmoi",
   "coreutils",
-  "defaultbrowser",
   "eza",
   "ffmpeg",
   "gh",
