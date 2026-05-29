@@ -1,0 +1,106 @@
+#!/bin/zsh
+
+{{- if eq .chezmoi.os "darwin" }}
+set -euo pipefail
+
+# Re-run this onchange script whenever the managed profile payload changes.
+# profile-sha256: {{ include "dot_config/iterm2/default-profile.json" | sha256sum }}
+
+PROFILE_PATH="$HOME/.config/iterm2/default-profile.json"
+PLIST_PATH="$HOME/.config/iterm2/com.googlecode.iterm2.plist"
+
+if ! command -v python3 >/dev/null 2>&1; then
+	echo "Skipping iTerm profile apply (python3 not found)."
+	exit 0
+fi
+
+if [ ! -f "$PROFILE_PATH" ]; then
+	echo "Skipping iTerm profile apply (missing profile file: $PROFILE_PATH)."
+	exit 0
+fi
+
+if [ ! -f "$PLIST_PATH" ]; then
+	echo "Skipping iTerm profile apply (missing iTerm plist: $PLIST_PATH)."
+	exit 0
+fi
+
+if pgrep -x "iTerm2" >/dev/null 2>&1 || pgrep -x "iTerm" >/dev/null 2>&1; then
+	echo "Warning: iTerm appears to be running; applying profile on a best-effort basis."
+fi
+
+PROFILE_PATH="$PROFILE_PATH" PLIST_PATH="$PLIST_PATH" python3 <<'PY'
+import json
+import os
+import plistlib
+import tempfile
+import uuid
+
+
+def is_non_empty_string(value: object) -> bool:
+	return isinstance(value, str) and bool(value.strip())
+
+
+profile_path = os.environ["PROFILE_PATH"]
+plist_path = os.environ["PLIST_PATH"]
+
+with open(profile_path, "r", encoding="utf-8") as f:
+	profile = json.load(f)
+
+if not isinstance(profile, dict):
+	raise SystemExit("iTerm profile JSON must be an object.")
+
+name = profile.get("Name")
+if not is_non_empty_string(name):
+	raise SystemExit("iTerm profile JSON requires a non-empty 'Name'.")
+
+guid = profile.get("Guid")
+if not is_non_empty_string(guid):
+	guid = str(uuid.uuid4()).upper()
+	profile["Guid"] = guid
+
+with open(plist_path, "rb") as f:
+	plist = plistlib.load(f)
+
+bookmarks = plist.get("New Bookmarks")
+if not isinstance(bookmarks, list):
+	bookmarks = []
+
+matched = None
+for bookmark in bookmarks:
+	if not isinstance(bookmark, dict):
+		continue
+	bookmark_guid = bookmark.get("Guid")
+	bookmark_name = bookmark.get("Name")
+	if bookmark_guid == guid or bookmark_name == name:
+		matched = bookmark
+		break
+
+if matched is None:
+	bookmarks.append(profile)
+else:
+	matched.update(profile)
+
+selected_guid = None
+for bookmark in bookmarks:
+	if isinstance(bookmark, dict) and bookmark.get("Name") == name:
+		bookmark_guid = bookmark.get("Guid")
+		if not is_non_empty_string(bookmark_guid):
+			bookmark_guid = guid
+			bookmark["Guid"] = bookmark_guid
+		selected_guid = bookmark_guid
+		break
+
+if not is_non_empty_string(selected_guid):
+	selected_guid = guid
+
+plist["New Bookmarks"] = bookmarks
+plist["Default Bookmark Guid"] = selected_guid
+
+with tempfile.NamedTemporaryFile("wb", delete=False, dir=os.path.dirname(plist_path)) as tmp:
+	plistlib.dump(plist, tmp, fmt=plistlib.FMT_XML, sort_keys=False)
+	tmp_path = tmp.name
+
+os.replace(tmp_path, plist_path)
+print(f"Applied iTerm profile '{name}' and set it as default.")
+PY
+{{- end }}
