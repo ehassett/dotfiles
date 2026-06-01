@@ -74,6 +74,7 @@ alias ud="brew upgrade"
 alias ud="sudo apt-get update && sudo apt-get upgrade -y"
 {{- end }}
 alias commit='git commit --date="$(date -u)"'
+alias githome='current_branch=$(gb --show-current); gco main && gl && gb -d $current_branch'
 
 {{- if eq .chezmoi.os "darwin" }}
 
