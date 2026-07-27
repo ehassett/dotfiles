@@ -17,6 +17,7 @@ brews = [
   "starship",
   "tailscale",
   "tcptraceroute",
+  "yq",
 ]
 casks = [
   "copilot-cli",
