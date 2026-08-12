@@ -3,7 +3,7 @@
 # IMPORTANT: export PATH before loading any tools that may rely on it
 {{- if eq .chezmoi.os "darwin" }}
 export GOBIN="$HOME/.local/bin"
-export PATH="$PATH:$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin"
+export PATH="$HOME/.asdf/shims:$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 {{- else if eq .chezmoi.os "linux" }}
 export PATH="$PATH:$HOME/.local/bin"
 {{- end }}

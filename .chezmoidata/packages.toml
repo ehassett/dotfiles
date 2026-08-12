@@ -34,6 +34,7 @@ asdf = [
   { name = "nodejs", version = "latest" },
   { name = "opentofu", version = "latest" },
   { name = "terraform", version = "latest:1.5" },
+  { name = "java", version = "latest:temurin-25" },
 ]
 npm = ["prettier"]
 
