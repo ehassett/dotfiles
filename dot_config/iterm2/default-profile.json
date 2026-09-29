@@ -108,6 +108,7 @@
     "Green Component" : 0.54117647059999996
   },
   "Custom Command" : "No",
+  "Load Shell Integration Automatically" : true,
   "ASCII Anti Aliased" : true,
   "Non Ascii Font" : "Monaco 12",
   "Vertical Spacing" : 1,

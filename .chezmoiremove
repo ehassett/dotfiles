@@ -1,0 +1,8 @@
+{{- if eq .chezmoi.os "darwin" }}
+# iTerm2 shell integration is now injected automatically by the app
+# (see the "Load Shell Integration Automatically" profile setting), so the
+# downloaded integration script and its symlink are no longer used. Remove the
+# stale artifacts left behind by the previous approach.
+.iterm2_shell_integration.zsh
+.config/iterm2/iterm2.zsh
+{{- end }}
