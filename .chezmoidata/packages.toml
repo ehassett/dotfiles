@@ -21,7 +21,6 @@ brews = [
 ]
 casks = [
   "copilot-cli",
-  "hiddenbar",
   "iterm2",
   "maccy",
   "postman",
