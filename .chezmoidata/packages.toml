@@ -29,11 +29,10 @@ casks = [
   "visual-studio-code",
 ]
 asdf = [
-  { name = "golang", version = "latest" },
-  { name = "nodejs", version = "latest" },
-  { name = "opentofu", version = "latest" },
+  { name = "golang", version = "latest:1.26" },
+  { name = "nodejs", version = "latest:24" },
+  { name = "opentofu", version = "latest:1.13" },
   { name = "terraform", version = "latest:1.5" },
-  { name = "java", version = "latest:temurin-25" },
 ]
 npm = ["prettier"]
 
