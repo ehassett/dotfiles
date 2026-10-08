@@ -33,6 +33,9 @@ asdf plugin add {{ .name }} \
 echo "Installing global npm packages..."
 npm install -g {{ range .packages.darwin.npm -}}{{ . | quote }} {{ end }}
 
+echo "Installing neboto..."
+curl -fsSL https://raw.githubusercontent.com/neboto/neboto-tui/main/install.sh | sh
+
 {{- else if eq .chezmoi.os "linux" -}}
 mkdir -p "$HOME/.local/bin"
 
